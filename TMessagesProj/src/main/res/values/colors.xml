@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="divider">#dcdcdc</color>
+    <color name="divider">#f2784b</color>
+    <color name="gray_divider">#dcdcdc</color>
     <color name="my_background">#f2f2f2</color>
     <color name="dialog">#eeeeee</color>
     <color name="mehdi_blue">#0070bb</color>
     <!--<color name="colorPrimary">#6ba81e</color>-->
-    <color name="colorPrimary">#ffEA1E63</color>
-    <color name="colorPrimaryDark">#c91b56</color>
-    <color name="colorControlActivated">#ff0056</color>
+    <color name="colorPrimary">#f2784b</color>
+    <color name="colorPrimaryDark">#b65a38</color>
+    <color name="colorControlActivated">#f9690e</color>
     <color name="colorGreen">#4991cc</color>
     <color name="colorPink">#ffa6a6</color>
     <color name="colorPinkDark">#ed145b</color>
@@ -16,4 +17,9 @@
     <color name="colorBlue">#00b1c1</color>
     <color name="colorGrey">#00BCD5</color>
     <color name="colorGreyDark">#272322</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#808080</color>
+    <color name="pink">#D24d57</color>
+
 </resources>

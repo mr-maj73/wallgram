@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:padding="15dp"
+              android:layout_height="match_parent">
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/band_you"
+              android:layout_gravity="center_horizontal"
+              android:textColor="@color/light_gray"
+              android:textSize="25sp"
+
+    />
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="@string/ads_warming2"
+                  android:gravity="right"
+                  android:textColor="@color/pink"
+                  android:layout_height="match_parent"/>
+        <ImageView android:layout_width="60dp"
+                   android:src="@drawable/warning_red"
+                   android:layout_height="wrap_content"
+
+        />
+    </LinearLayout>
+  <LinearLayout android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="50dp">
+      <EditText android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="شرط اول "
+                android:textColorHint="@color/black"
+                android:gravity="right|center_vertical"
+                android:layout_height="match_parent"/>
+      <ImageView android:layout_width="60dp"
+                 android:src="@drawable/check_black"
+                 android:layout_height="match_parent"
+
+      />
+  </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="50dp">
+        <EditText android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:hint="شرط دوم "
+                  android:textColorHint="@color/black"
+                  android:gravity="right|center_vertical"
+                  android:layout_height="match_parent"/>
+        <ImageView android:layout_width="60dp"
+                   android:src="@drawable/check_black"
+                   android:layout_height="match_parent"
+
+        />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="50dp">
+        <EditText android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:hint="شرط سوم "
+                  android:textColorHint="@color/black"
+                  android:gravity="right|center_vertical"
+                  android:layout_height="match_parent"/>
+        <ImageView android:layout_width="60dp"
+                   android:src="@drawable/check_black"
+                   android:layout_height="match_parent"
+
+        />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:gravity="right"
+                  android:layout_height="50dp">
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        >
+
+            <EditText android:layout_width="match_parent"
+                      android:layout_gravity="right"
+                      android:hint="تعداد سکه"
+                      android:textColorHint="@color/black"
+                      android:gravity="right|center_vertical"
+                      android:layout_height="match_parent"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView android:layout_width="60dp"
+                   android:src="@drawable/coin_gray"
+                   android:layout_height="match_parent"
+
+        />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_marginBottom="15dp"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="@string/ads_warming1"
+                  android:gravity="right"
+                  android:textColor="@color/light_gray"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="60dp"
+                   android:src="@drawable/warning_gray"
+                   android:layout_height="wrap_content"
+
+        />
+    </LinearLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:text="ثبت و پرداخت سکه"
+              android:textColor="@color/colorPrimary"
+              android:textSize="@dimen/bold_text"
+    />
+</LinearLayout>

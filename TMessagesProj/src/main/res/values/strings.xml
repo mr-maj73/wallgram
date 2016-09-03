@@ -17,6 +17,33 @@
     <string name="StartText">Please confirm your country code and enter your phone number.</string>
     <string name="ChooseCountry">Choose a country</string>
     <string name="WrongCountry">Wrong country code</string>
+    
+    <!--xml string-->
+    <string name="communication_whit_user">ارتباط با مخاطب</string>
+    <string name="write_publicity">ثبت تبلیغات</string>
+    <string name="ads_warming1">در صورت عدم تایید مخاطب و یا لغو درخواست، تمام سکه های شما برگردانده میشود</string>
+    <string name="ads_warming2">لطفا شرایط مورد نظر خود را به تفکیک و دقیق وارد نمایید.\nپیگیری شکایات بر مبنای شرایط شما صورت میگیرد.</string>
+    <string name="band_you">شرایط سفارش دهنده</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <!--code enter view-->
     <string name="YourCode">Phone verification</string>
     <string name="SentSmsCode">We\'ve sent an SMS with an activation code to your phone <![CDATA[<b>]]>%1$s<![CDATA[</b>]]>.</string>

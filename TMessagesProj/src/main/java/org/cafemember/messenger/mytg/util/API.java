@@ -27,7 +27,7 @@ public class API {
 //        private static String SERVER_PATH = "http://192.168.10.7/api/tg";
 //        private static String SERVER_PATH = "http://192.168.43.239/api/tg";
 //    private static String SERVER_PATH = "http://5.135.114.193/api/tg";
-    private static String SERVER_PATH = "http://telemember-gram.ir//api/tg";
+    private static String SERVER_PATH = "http://atitec.ddns.net:3333/atigram/api/tg";
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private static API instance;

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="سکه 1000"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/coin_gray"
+            android:background="@null"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/bold_text"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+
+    />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_alignParentTop="true"
+              android:layout_alignParentRight="true"
+              android:text="09379999999"
+              android:textSize="@dimen/bold_text"
+              android:layout_margin="5dp"
+              android:textColor="@color/black"
+
+    />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_alignParentBottom="true"
+              android:layout_alignParentLeft="true"
+              android:layout_margin="5dp"
+              android:textSize="@dimen/bold_text"
+              android:text="برسی پیشنهاد"
+              android:textColor="@color/colorPrimary"
+
+    />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1dp"
+                  android:background="@color/gray_divider"
+                  android:layout_alignParentBottom="true"
+    ></LinearLayout>
+
+</RelativeLayout>

@@ -12,11 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import org.cafemember.messenger.AndroidUtilities;
 import org.cafemember.messenger.ImageReceiver;
@@ -66,7 +62,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
             viewHolder = new MyChannelViewHolder();
             viewHolder.name = (TextView)v.findViewById(R.id.name);
             viewHolder.title = (TextView)v.findViewById(R.id.title);
-            viewHolder.image = (CircleImageView)v.findViewById(R.id.image);
+            viewHolder.image = (ImageView)v.findViewById(R.id.image);
             viewHolder.add = (Button)v.findViewById(R.id.reserve);
             viewHolder.delete = (Button)v.findViewById(R.id.delete);
             v.setTag(viewHolder);
@@ -225,7 +221,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
     public class MyChannelViewHolder {
 
         TextView name ;
-        CircleImageView image ;
+        ImageView image ;
         Button add;
         Button delete;
         TextView title ;

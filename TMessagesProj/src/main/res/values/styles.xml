@@ -87,7 +87,7 @@
     </style>
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/divider</item>
-        <item name="android:background">#ea1e63</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="MyDialog" parent="@android:style/Theme.Holo.Light.Dialog" tools:targetApi="honeycomb">

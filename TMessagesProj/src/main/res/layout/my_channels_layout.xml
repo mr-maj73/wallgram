@@ -1,46 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:background="@color/my_background">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:orientation="vertical" android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center_horizontal"
+             android:background="@color/my_background">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/newChannel"
-                android:background="@drawable/button_pink_dark"
-                android:scaleType="fitCenter"
-                android:text="ثبت کانال جدید"
-                android:textColor="@android:color/white"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="14dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="کانال های شما"
-                android:id="@+id/textView"
-                android:textColor="@color/colorGrey"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical|right" />
-        </LinearLayout>
+            <com.melnykov.fab.FloatingActionButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/newChannel"
+android:src="@drawable/add"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    app:fab_colorNormal="@color/colorBlue"
+                    app:fab_colorPressed="@color/colorBlue"
+                    android:layout_margin="16dp"
+
+                />
+
+
+
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
@@ -55,7 +42,7 @@
         </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,17 +55,17 @@
         android:layout_gravity="center" />
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:id="@+id/holder"
-        android:background="#55d7e4d9">
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/holder"
+            android:background="#55d7e4d9">
 
         <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
-            android:layout_gravity="center" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:layout_gravity="center" />
     </LinearLayout>
 </FrameLayout>

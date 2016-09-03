@@ -9,12 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 
+import com.melnykov.fab.FloatingActionButton;
+import com.melnykov.fab.ScrollDirectionListener;
 import org.cafemember.messenger.AndroidUtilities;
 import org.cafemember.messenger.ApplicationLoader;
 import org.cafemember.messenger.LocaleController;
@@ -57,7 +55,7 @@ public class MyChannelFragment extends Fragment implements Refrashable, SwipeRef
     private LinearLayout loading;
     private ListView channelsLis;
     private View layout;
-    private Button newChannel;
+    private FloatingActionButton  newChannel;
     private long lastCheck = 0;
     private SwipeRefreshLayout swiper;
     private TextView errorHolder;
@@ -78,8 +76,37 @@ public class MyChannelFragment extends Fragment implements Refrashable, SwipeRef
         loading = (LinearLayout)layout.findViewById(R.id.holder);
         errorHolder = (TextView) layout.findViewById(R.id.error);
         loading.setVisibility(View.GONE);
-        newChannel = (Button) layout.findViewById(R.id.newChannel);
+
         swiper = (SwipeRefreshLayout) layout.findViewById(R.id.swip);
+        newChannel = (FloatingActionButton) layout.findViewById(R.id.newChannel);
+        newChannel.attachToListView(channelsLis, new ScrollDirectionListener() {
+            @Override
+            public void onScrollDown() {
+//                Log.d("ListViewFragment", "onScrollDown()");
+            }
+
+            @Override
+            public void onScrollUp() {
+//                Log.d("ListViewFragment", "onScrollUp()");
+            }
+        }, new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//                Log.d("ListViewFragment", "onScrollStateChanged()");
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//                Log.d("ListViewFragment", "onScroll()");
+            }
+        });
+
+
+
+
+
+
+
         adapter = new MyChannelsAdapter(getContext(),R.layout.my_channel_item,new ArrayList<Channel>(),MyChannelFragment.this,dialogsActivity);
         channelsLis.setAdapter(adapter);
         newChannel.setOnClickListener(new View.OnClickListener() {

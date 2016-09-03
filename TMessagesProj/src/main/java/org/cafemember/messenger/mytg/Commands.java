@@ -60,9 +60,6 @@ public class Commands {
     public static JSONArray JoinCoins;
     public static JSONArray ViewCoins;
     private static int x = 0;
-    private static int limit = 100;
-    private static int offset = 0;
-    private static int z = 0;
 
     public static void view(final int id) {
 
@@ -352,200 +349,12 @@ public class Commands {
     }
 
     public static ConcurrentHashMap<Long, TLRPC.Dialog> dialogs_dict = new ConcurrentHashMap<>(100, 1.0f, 2);
-    public static ArrayList<TLRPC.Chat> dialogs = new ArrayList<>();
+    public static ArrayList<TLRPC.Dialog> dialogs = new ArrayList<>();
+
     public static void checkChannelsTrigger(final ArrayList<TLRPC.Dialog> dsf, final DialogsActivity dialogsActivity) {
-
-//        checkChannels(dsf,dialogsActivity);
-        limit = 100;
-        offset = 0;
-        dialogs.clear();
-        checkChannelsV2(dsf,dialogsActivity);
-    }
-
-
-    public static void checkChannelsV2(final ArrayList<TLRPC.Dialog> dsf,final DialogsActivity dialogsActivity) {
-//        Log.e("CHK","Start Checking Channels ...");
-
-
-        TLRPC.TL_channels_getDialogs req = new TLRPC.TL_channels_getDialogs();
-        req.limit = limit;
-        req.offset = offset;
-
-        ConnectionsManager.getInstance().sendRequest(req, new RequestDelegate() {
-            @Override
-            public void run(TLObject response, TLRPC.TL_error error) {
-                if (error == null) {
-                    final TLRPC.messages_Dialogs org_telegram_tgnet_TLRPC_messages_Dialogs = (TLRPC.messages_Dialogs) response;
-                    ArrayList myDialogs ;
-                    myDialogs = org_telegram_tgnet_TLRPC_messages_Dialogs.chats;
-                    if (org_telegram_tgnet_TLRPC_messages_Dialogs.count != 0) {
-                        z = org_telegram_tgnet_TLRPC_messages_Dialogs.count;
-                                        Log.e("CHK","Limit: "+limit);
-
-                    }
-                    dialogs.addAll(org_telegram_tgnet_TLRPC_messages_Dialogs.chats);
-                    if ((dialogs.size() < z || myDialogs.size() != 0) && z != 0) {
-                        offset = dialogs.size() - 1;
-                        Log.e("CHK","offset: "+offset);
-                        checkChannelsV2(dsf,dialogsActivity);
-                        return;
-                    }
-                    Log.e("CHK","Done: "+dialogs.size());
-                    getJoined(dialogsActivity);
-                }
-            }
-        });
-    }
-
-    private static void getJoined(final DialogsActivity dialogsActivity){
-        getJoinedChannels(new OnResponseReadyListener() {
-            @Override
-            public void OnResponseReady(boolean error, JSONObject data, String message) {
-//                Log.e("CHK","Error: "+error);
-                if(!error){
-                    JSONArray channelsId = null;
-                    try {
-                        channelsId = data.getJSONArray("data");
-                        int size = channelsId.length();
-                        HashMap<Long,Channel> lastChannels = new HashMap<Long, Channel>();
-                        for(int i=0 ; i < size ; i++) {
-                            JSONObject item = channelsId.getJSONObject(i);
-                            Channel currentChannel = new Channel(item.getString("name"), item.getInt("tg_id"));
-                            lastChannels.put(currentChannel.id,currentChannel);
-                        }
-                        for (TLRPC.Chat dialog:dialogs){
-                            /*if(dialog instanceof TLRPC.TL_dialogChannel){
-                                long id = -dialog.id;
-                                if(id == 0){
-                                    id = dialog.peer.channel_id;
-                                }
-                            }*/
-                            lastChannels.remove(dialog.id);
-                        }
-                        if(lastChannels.size() > 0) {
-                            Log.e("CHK","left: "+lastChannels.size());
-//                        if(true) {
-//                            Log.e("CHK","Create");
-                            String [] items = new String[lastChannels.size()];
-                            final ArrayList<Channel> ids = new ArrayList<>();
-                            int i = 0;
-                            for(Channel channel:lastChannels.values()){
-                                items[i] = channel.name;
-                                ids.add(channel);
-                                i++;
-                            }
-                            final boolean[] checkedItems = new boolean[items.length];
-                            AlertDialog.Builder builder = null;
-                            builder = new AlertDialog.Builder(dialogsActivity.getParentActivity());
-//                            }
-                            int coin = items.length * 2;
-                            builder.setTitle("شما کانال های زیر را ترک کردید و "+coin+" سکه از دست دادید");
-
-                            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                    checkedItems[which] = isChecked;
-                                }
-                            });
-
-
-                            builder.setPositiveButton(LocaleController.getString("ReJoin", R.string.ReJoin), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    reJoin(ids, checkedItems, new OnJoinSuccess() {
-                                        @Override
-                                        public void OnResponse(boolean ok) {
-                                            if (visibleDialog != null) {
-                                                visibleDialog.dismiss();
-                                                visibleDialog = null;
-                                            }
-
-                                            if(!ok){
-                                                Toast.makeText(context,"خطا در بازیابی کانال ها",Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                                }
-                            });
-                            /*builder.setNeutralButton(LocaleController.getString("SelectAll", R.string.SelectAll), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int id) {
-                                    *//*for (int j = 0 ; j < checkedItems.length ; j++){
-                                        checkedItems[j]=true;
-                                    }*//*
-                                    ListView list = ((AlertDialog) dialogInterface).getListView();
-                                    for (int i=0; i < list.getCount(); i++) {
-                                        list.setItemChecked(i, true);
-                                    }
-                                }
-                            });*/
-                            builder.setNegativeButton(LocaleController.getString("LeftAll", R.string.LeftAll), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    for (int j = 0 ; j < checkedItems.length ; j++){
-                                        checkedItems[j]=false;
-                                    }
-                                    reJoin(ids, checkedItems, new OnJoinSuccess() {
-                                        @Override
-                                        public void OnResponse(boolean ok) {
-                                            if (visibleDialog != null) {
-                                                visibleDialog.dismiss();
-                                                visibleDialog = null;
-                                            }
-                                            if(!ok){
-                                                Toast.makeText(context,"خطا در بازیابی کانال ها",Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                                }
-                            });
-                            builder.setCancelable(false);
-
-
-                            builder.setOnKeyListener(new Dialog.OnKeyListener() {
-
-                                @Override
-                                public boolean onKey(DialogInterface arg0, int keyCode,
-                                                     KeyEvent event) {
-                                    // TODO Auto-generated method stub
-                                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                                        if (x < 1) {
-                                            Toast.makeText(context, LocaleController.getString("backClickAgain", R.string.backClickAgain), Toast.LENGTH_SHORT).show();
-                                            x++;
-                                            new Handler().postDelayed(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    x = 0;
-                                                }
-                                            }, 1000);
-                                            return true;
-
-                                        } else {
-                                            if (context instanceof Activity) {
-                                                ((Activity) context).finish();
-                                            }
-                                            return true;
-                                        }
-
-                                    }
-                                    return false;
-                                }
-                            });
-
-
-                            dialogsActivity.showDialogNoCancel(builder.create());
-                            /*AlertDialog dialog = builder.show();
-
-                            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                            dialog.show();*/
-//                            System.out.println("Left Channels: "+ Arrays.toString(lastChannels.toArray()));
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
+        Log.e("CHK", "Checking Channels...");
+        checkChannels(dsf, dialogsActivity);
+        dialogs_dict.clear();
     }
 
     public static void checkChannels(final ArrayList<TLRPC.Dialog> dsf, final DialogsActivity dialogsActivity) {
@@ -556,7 +365,7 @@ public class Commands {
         req.limit = 100;
         req.offset_date = (int) (System.currentTimeMillis() / 1000);
         boolean found = false;
-        /*for (int a = dialogs.size() - 1; a >= 0; a--) {
+        for (int a = dialogs.size() - 1; a >= 0; a--) {
 //        for (int a = 0 ; a < dialogs.size(); a++) {
             TLRPC.Dialog dialog = dialogs.get(a);
             int lower_id = (int) dialog.id;
@@ -565,7 +374,7 @@ public class Commands {
                 MessageObject message = MessagesController.getInstance().dialogMessage.get(dialog.id);
                 req.offset_date = dialog.last_message_date;
                 break;
-               *//* if (message != null && message.getId() > 0) {
+               /* if (message != null && message.getId() > 0) {
                     req.offset_date = Math.max(dialog.last_message_date_i, message.messageOwner.date);
 //                    req.offset_id = message.messageOwner.id;
                     int id;
@@ -579,9 +388,9 @@ public class Commands {
 //                    req.offset_peer = MessagesController.getInstance().getInputPeer(id);
                     found = true;
                     break;
-                }*//*
-            }
                 }*/
+            }
+        }
         req.offset_peer = new TLRPC.TL_inputPeerEmpty();
         if (!found) {
         }
@@ -686,7 +495,7 @@ public class Commands {
                         }
                     }
                     dialogs.clear();
-                    /*dialogs.addAll(dialogs_dict.values());
+                    dialogs.addAll(dialogs_dict.values());
                     Collections.sort(dialogs, new Comparator<TLRPC.Dialog>() {
                         @Override
                         public int compare(TLRPC.Dialog tl_dialog, TLRPC.Dialog tl_dialog2) {
@@ -698,7 +507,7 @@ public class Commands {
                                 return -1;
                             }
                         }
-                    });*/
+                    });
                     if (added) {
                         Log.e("CHK", "Added: " + dialogs_dict.size());
                         checkChannels(null, dialogsActivity);
@@ -722,11 +531,11 @@ public class Commands {
                                             Channel currentChannel = new Channel(item.getString("name"), item.getInt("tg_id"));
                                             lastChannels.put(currentChannel.id, currentChannel);
                                         }
-                                        for (TLRPC.Chat dialog:dialogs){
-                                            /*if(dialog instanceof TLRPC.TL_dialogChannel){
+                                        for (TLRPC.Dialog dialog : dialogs) {
+                                            if (dialog instanceof TLRPC.TL_dialogChannel) {
                                                 long id = -dialog.id;
-                                            }*/
-                                            lastChannels.remove(dialog.id);
+                                                lastChannels.remove(id);
+                                            }
                                         }
                                         if (lastChannels.size() > 0) {
 //                        if(true) {
@@ -746,104 +555,39 @@ public class Commands {
                                             int coin = items.length * 2;
                                             builder.setTitle("شما کانال های زیر را ترک کردید و " + coin + " سکه از دست دادید");
 
-                                builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                        checkedItems[which] = isChecked;
-                                    }
-                                });
-
-
-                                builder.setPositiveButton(LocaleController.getString("ReJoin", R.string.ReJoin), new DialogInterface.OnClickListener() {
+                                            builder.setItems(items, null);
+                                            builder.setNegativeButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                                    /*for (int j = 0 ; j < checkedItems.length ; j++){
+                                                        checkedItems[j]=false;
+                                                    }
                                     reJoin(ids, checkedItems, new OnJoinSuccess() {
                                         @Override
                                         public void OnResponse(boolean ok) {
+
+                                                        }
+                                                    });*/
                                                     if (visibleDialog != null) {
                                                         visibleDialog.dismiss();
                                                         visibleDialog = null;
                                                     }
-
-                                                            if(!ok){
-                                                                Toast.makeText(context,"خطا در بازیابی کانال ها",Toast.LENGTH_SHORT).show();
-                                                            }
                                                 }
                                             });
-                                    }
-                                });
-                            /*builder.setNeutralButton(LocaleController.getString("SelectAll", R.string.SelectAll), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int id) {
-                                    *//*for (int j = 0 ; j < checkedItems.length ; j++){
-                                        checkedItems[j]=true;
-                                    }*//*
-                                    ListView list = ((AlertDialog) dialogInterface).getListView();
-                                    for (int i=0; i < list.getCount(); i++) {
-                                        list.setItemChecked(i, true);
-                                    }
-                                }
-                            });*/
-                                builder.setNegativeButton(LocaleController.getString("LeftAll", R.string.LeftAll), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                            builder.setCancelable(true);
+                                            final AlertDialog al = builder.create();
                                             for (int j = 0; j < checkedItems.length; j++) {
                                                 checkedItems[j] = false;
                                             }
                                             reJoin(ids, checkedItems, new OnJoinSuccess() {
                                                 @Override
                                                 public void OnResponse(boolean ok) {
-                                                if (visibleDialog != null) {
-                                                    visibleDialog.dismiss();
-                                                    visibleDialog = null;
-                                                    }
-                                                    if(!ok){
-                                                        Toast.makeText(context,"خطا در بازیابی کانال ها",Toast.LENGTH_SHORT).show();
+                                                    if (ok) {
+                                                        dialogsActivity.showDialog(al);
                                                     }
                                                 }
                                             });
-                                    }
-                                });
-                                builder.setCancelable(false);
 
-
-                                builder.setOnKeyListener(new Dialog.OnKeyListener() {
-
-                                    @Override
-                                    public boolean onKey(DialogInterface arg0, int keyCode,
-                                                         KeyEvent event) {
-                                        // TODO Auto-generated method stub
-                                        if (keyCode == KeyEvent.KEYCODE_BACK) {
-                                            if (x < 1) {
-                                                Toast.makeText(context, LocaleController.getString("backClickAgain", R.string.backClickAgain), Toast.LENGTH_SHORT).show();
-                                                x++;
-                                                new Handler().postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        x = 0;
-                                                    }
-                                                }, 1000);
-                                                return true;
-
-                                            } else {
-                                                if (context instanceof Activity) {
-                                                    ((Activity) context).finish();
-                                                }
-                                                return true;
-                                            }
-
-                                        }
-                                        return false;
-                                    }
-                                });
-
-
-                                dialogsActivity.showDialogNoCancel(builder.create());
-                            /*AlertDialog dialog = builder.show();
-
-                            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                            dialog.show();*/
-//                            System.out.println("Left Channels: "+ Arrays.toString(lastChannels.toArray()));
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -864,15 +608,15 @@ public class Commands {
         int size = ids.size();
         int reJoinSize = 0;
         for (int i = 0; i < size; i++) {
-            if(checkedItems[i]){
+            /*if(checkedItems[i]){
                 channelsToReJoin.add(ids.get(i));
                 reJoinSize++;
             }
             else {
-
+*/
             channelsToLeft.put(ids.get(i).id);
-            }
-        }
+//            }
+        }/*
             final int joins = reJoinSize;
             for(final Channel ch: channelsToReJoin){
                             join(ch, new OnResponseReadyListener() {
@@ -912,7 +656,7 @@ public class Commands {
                                 }
                             },false);
 
-                        }
+                        }*/
 
         if (reJoinSize == 0) {
             try {
