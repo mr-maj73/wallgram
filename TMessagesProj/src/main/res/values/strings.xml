@@ -5,9 +5,9 @@
 <resources>
 
     <!--Telegram Original Strings-->
-    <string name="AppName">تفلگارد:ممبر بگیر تلگرام</string>
+    <string name="AppName">والگرام</string>
     <!--<string name="AppName">تفلگارد</string>-->
-    <string name="AppNameBeta">تفلگارد:ممبر بگیر تلگرام بتا</string>
+    <string name="AppNameBeta">والگرام بتا</string>
     <!--<string name="AppNameBeta">تفلگارد بتا</string>-->
     <string name="LanguageName">English</string>
     <string name="LanguageNameInEnglish">English</string>

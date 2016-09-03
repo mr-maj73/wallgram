@@ -59,6 +59,7 @@ public class Commands {
 
     public static JSONArray JoinCoins;
     public static JSONArray ViewCoins;
+    private static JSONObject Cats;
     private static int x = 0;
 
     public static void view(final int id) {
@@ -956,6 +957,33 @@ public class Commands {
             FileLog.e("tmessages", e);
         }
         return null;
+    }
+
+    public static void getWallHistory(OnResponseReadyListener listener) {
+        API.getInstance().run(String.format(Locale.ENGLISH, "/wall/history"), listener);
+    }
+
+    public static void getWall(int id, OnResponseReadyListener listener) {
+        String cat = id == 0 ? "":"/"+id;
+        API.getInstance().run(String.format(Locale.ENGLISH, "/wall/get"+cat), listener);
+    }
+
+    public static void categories(final OnResponseReadyListener listener) {
+        if (Cats == null ) {
+            API.getInstance().run(String.format(Locale.ENGLISH, "/wall/cats"), new OnResponseReadyListener() {
+                @Override
+                public void OnResponseReady(boolean error, JSONObject data, String message) {
+                    if (!error) {
+                            Cats = data;
+                            listener.OnResponseReady(false,Cats,"");
+                    } else {
+                        listener.OnResponseReady(true,data,message);
+                    }
+                }
+            });
+        } else {
+            listener.OnResponseReady(false,Cats,"");
+        }
     }
 
 }
