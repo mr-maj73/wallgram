@@ -963,6 +963,10 @@ public class Commands {
         API.getInstance().run(String.format(Locale.ENGLISH, "/wall/history"), listener);
     }
 
+    public static void mySuggests(OnResponseReadyListener listener) {
+        API.getInstance().run(String.format(Locale.ENGLISH, "/wall/mySuggests"), listener);
+    }
+
     public static void getWall(int id, OnResponseReadyListener listener) {
         String cat = id == 0 ? "":"/"+id;
         API.getInstance().run(String.format(Locale.ENGLISH, "/wall/get"+cat), listener);
@@ -984,6 +988,90 @@ public class Commands {
         } else {
             listener.OnResponseReady(false,Cats,"");
         }
+    }
+
+
+    public static void acceptAd(int id, final OnJoinSuccess success) {
+        API.getInstance().post(String.format(Locale.ENGLISH, "/wall/accept/%d", id), "", new OnResponseReadyListener() {
+            @Override
+            public void OnResponseReady(boolean error, JSONObject data, String message) {
+                if (!error) {
+
+                    loadCoins(data);
+                    success.OnResponse(true);
+                } else {
+                    success.OnResponse(false);
+                    Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public static void reportAd(int id, final OnJoinSuccess success) {
+        API.getInstance().post(String.format(Locale.ENGLISH, "/wall/report/%d", id), "", new OnResponseReadyListener() {
+            @Override
+            public void OnResponseReady(boolean error, JSONObject data, String message) {
+                if (!error) {
+
+                    loadCoins(data);
+                    success.OnResponse(true);
+                } else {
+                    success.OnResponse(false);
+                    Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public static void suggest(int wallId,int price,String rule, final OnJoinSuccess success) {
+        String body = String.format(Locale.ENGLISH, "{\"wall_id\":%d, \"price\":%d, \"rule\":\"%s\"}",wallId, price, rule);
+        API.getInstance().post(String.format(Locale.ENGLISH, "/wall/suggest"), body, new OnResponseReadyListener() {
+            @Override
+            public void OnResponseReady(boolean error, JSONObject data, String message) {
+                if (!error) {
+
+                    loadCoins(data);
+                    success.OnResponse(true);
+                } else {
+                    success.OnResponse(false);
+                    Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public static void addChannel(final OnJoinSuccess success) {
+//        String body = String.format(Locale.ENGLISH, "{\"wall_id\":%d, \"price\":%d, \"rule\":\"%s\"}",wallId, price, rule);
+        String body = "";
+        API.getInstance().post(String.format(Locale.ENGLISH, "/wall/addChannel"), body, new OnResponseReadyListener() {
+            @Override
+            public void OnResponseReady(boolean error, JSONObject data, String message) {
+                if (!error) {
+
+                    loadCoins(data);
+                    success.OnResponse(true);
+                } else {
+                    success.OnResponse(false);
+                    Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public static void rejectAd(int id, final OnJoinSuccess success) {
+        API.getInstance().post(String.format(Locale.ENGLISH, "/wall/reject/%d", id), "", new OnResponseReadyListener() {
+            @Override
+            public void OnResponseReady(boolean error, JSONObject data, String message) {
+                if (!error) {
+
+                    loadCoins(data);
+                    success.OnResponse(true);
+                } else {
+                    success.OnResponse(false);
+                    Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 }
