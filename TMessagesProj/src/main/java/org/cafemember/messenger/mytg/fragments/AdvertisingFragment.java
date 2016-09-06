@@ -233,8 +233,8 @@ public class AdvertisingFragment extends Fragment implements Refrashable, SwipeR
     }
 
 
-    public void showDialog() {
-        DialogFragment newFragment = AdvertisingDialog.newInstance();
+    public void showDialog(long id) {
+        DialogFragment newFragment = AdvertisingDialog.newInstance(id);
         newFragment.show(getFragmentManager(), "dialog");
 
     }

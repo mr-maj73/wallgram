@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/titleDialogAddMemebers"
+            android:id="@+id/textView8"
+            android:textColor="@color/titleDialogColor"
+            android:gravity="center"
+            android:paddingTop="25dp"
+            android:paddingBottom="15dp"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/alertDialogAddMemebers1"
+            android:id="@+id/textView9"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/messageDialogColor" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageView6"
+            android:src="@drawable/warning_red"
+            android:scaleType="fitXY" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|right">
+
+        <EditText
+            android:layout_width="180dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/edtPriceAddMember"
+            android:inputType="number"
+            android:hint="@string/priceDialogAdv"
+            android:gravity="center_vertical|right"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/hint" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageView7"
+            android:src="@drawable/coin_gray"
+            android:scaleType="fitXY" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerAddMember" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtDescriptionAddMember"
+            android:gravity="center_vertical|right"
+            android:textColorHint="@color/hint"
+            android:hint="@string/descriptionDialogAddMemebers2"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:textColor="@color/hint" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtAdminLinkAddMember"
+            android:gravity="center_vertical|right"
+            android:textColorHint="@color/hint"
+            android:hint="@string/linkAdminDialogAddMemebers2"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:textColor="@color/hint" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/alertDialogAddMemebers2"
+            android:id="@+id/textView14"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/hint" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageView10"
+            android:src="@drawable/warning_gray"
+            android:scaleType="center"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitAddMemberLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/submitDialogAddMemebers"
+            android:id="@+id/textView15"
+            android:textColor="@color/messageDialogColor"
+            android:textSize="24sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingRight="4dp"
+            android:paddingLeft="16dp" />
+    </LinearLayout>
+</LinearLayout>

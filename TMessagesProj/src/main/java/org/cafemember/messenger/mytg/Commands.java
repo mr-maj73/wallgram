@@ -1023,7 +1023,7 @@ public class Commands {
         });
     }
 
-    public static void suggest(int wallId,int price,String rule, final OnJoinSuccess success) {
+    public static void suggest(int wallId,int price,String rule, final OnResponseReadyListener success) {
         String body = String.format(Locale.ENGLISH, "{\"wall_id\":%d, \"price\":%d, \"rule\":\"%s\"}",wallId, price, rule);
         API.getInstance().post(String.format(Locale.ENGLISH, "/wall/suggest"), body, new OnResponseReadyListener() {
             @Override
@@ -1031,9 +1031,9 @@ public class Commands {
                 if (!error) {
 
                     loadCoins(data);
-                    success.OnResponse(true);
+                    success.OnResponseReady(false,null,message);
                 } else {
-                    success.OnResponse(false);
+                    success.OnResponseReady(true,null,message);
                     Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
                 }
             }
