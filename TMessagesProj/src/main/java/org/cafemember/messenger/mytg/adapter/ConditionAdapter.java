@@ -50,8 +50,6 @@ public class ConditionAdapter extends
 
     }
 
-    getI
-
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
         final String hin = hints[position];
