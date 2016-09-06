@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.View;
 
 import org.cafemember.messenger.mytg.FontManager;
+import org.cafemember.messenger.mytg.fragments.AdvertisingFragment;
 import org.cafemember.messenger.mytg.fragments.ChannelsFragment;
 import org.cafemember.messenger.mytg.fragments.MyChannelFragment;
 import org.cafemember.messenger.mytg.fragments.CoinFragment;
@@ -18,6 +19,7 @@ import org.cafemember.ui.DialogsActivity;
  */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
+    private AdvertisingFragment advertisingFragment;
     private View frameLayout;
     private TgFragment tgFragment;
     DialogsActivity dialogsActivity;
@@ -25,6 +27,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private MyChannelFragment myChannelFragment;
     private CoinFragment coinFragment;
     private TransfareActivity transfareFragment;
+
     public ViewPagerAdapter(FragmentManager fm, DialogsActivity dialogsActivity, View dialogsLayout) {
         super(fm);
         this.dialogsActivity = dialogsActivity;
@@ -32,6 +35,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         channelsFragment = new ChannelsFragment(dialogsActivity);
         myChannelFragment = new MyChannelFragment(dialogsActivity);
         transfareFragment = new TransfareActivity(dialogsActivity);
+        advertisingFragment = new AdvertisingFragment();
         coinFragment = new CoinFragment(false);
 
 //        tgFragment = new TgFragment(frameLayout);
@@ -39,17 +43,17 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             /*case 0:
                 FontManager.instance().setTypefaceImmediate(frameLayout);
 
                 return new TgFragment(frameLayout);*/
             case 1:
-                return channelsFragment;
+                return advertisingFragment;
             case 2:
                 return myChannelFragment;
             case 3:
-                return transfareFragment;
+                return channelsFragment;
             case 0:
                 return coinFragment;
 

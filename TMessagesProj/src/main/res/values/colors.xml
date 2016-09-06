@@ -21,5 +21,18 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#808080</color>
     <color name="pink">#D24d57</color>
+    <color name="fontPrice">#f2784b</color>
+
+
+
+    <color name="base">#fcfcfc</color>
+    <color name="highlight">#a1a1a1</color>
+    <color name="error">#ff0000</color>
+    <color name="hint">#3c3c3c</color>
+    <color name="arrow">#00ff00</color>
+    <color name="floating_label">#0000ff</color>
+    <color name="titleDialogColor">#808080</color>
+    <color name="messageDialogColor">#d24d57</color>
+
 
 </resources>

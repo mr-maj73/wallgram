@@ -15,18 +15,19 @@ import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.adapter.ViewPagerAdapter;
 import org.cafemember.messenger.mytg.listeners.Refrashable;
 import org.cafemember.ui.DialogsActivity;
+
 /**
  * Created by Masoud on 6/2/2016.
  */
 public class Views {
 
-    public static View getTabLayout(final FragmentActivity context, DialogsActivity dialogsActivity, View dialogsLayout){
+    public static View getTabLayout(final FragmentActivity context, DialogsActivity dialogsActivity, View dialogsLayout) {
 
         View lay = context.getLayoutInflater().inflate(R.layout.main_layout, null);
         //lay.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));*/
 
-        TabLayout tabLayout = (TabLayout)lay.findViewById(R.id.tabs);
-        final MyViewPager viewPager = (MyViewPager)lay.findViewById(R.id.viewpager);
+        TabLayout tabLayout = (TabLayout) lay.findViewById(R.id.tabs);
+        final MyViewPager viewPager = (MyViewPager) lay.findViewById(R.id.viewpager);
 
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(context.getSupportFragmentManager(), dialogsActivity, dialogsLayout);
         viewPager.setAdapter(viewPagerAdapter);
@@ -55,47 +56,59 @@ public class Views {
         });
 
         final TabLayout.Tab telegram = tabLayout.newTab();
-        final TabLayout.Tab channels = tabLayout.newTab();
-        final TabLayout.Tab posts = tabLayout.newTab();
-        final TabLayout.Tab joinCoins = tabLayout.newTab();
+        final TabLayout.Tab myChannels = tabLayout.newTab();
+        final TabLayout.Tab ChannelsFragment = tabLayout.newTab();
+        final TabLayout.Tab coinFragmentTab = tabLayout.newTab();
+        final TabLayout.Tab advertisingFragmentTab = tabLayout.newTab();
         final TabLayout.Tab transfare = tabLayout.newTab();
 
 
 //        telegram.setIcon(R.drawable.ic_message);
 //        channels.setText("خرید سکه");
-        View tabOne =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
-        TextView text = (TextView)tabOne.findViewById(R.id.text);
-        ImageView icon = (ImageView)tabOne.findViewById(R.id.icon);
-        text.setText("خرید سکه");
+        View tabOne = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+        TextView text = (TextView) tabOne.findViewById(R.id.text);
+        ImageView icon = (ImageView) tabOne.findViewById(R.id.icon);
+        text.setText(R.string.coinFragmentLeybel);
 //        icon.setImageResource(R.drawable.buy_coin);
-        joinCoins.setCustomView(tabOne);
+        coinFragmentTab.setCustomView(tabOne);
 
-//        posts.setText("سکه رایگان");
-//        joinCoins.setText("سفارش سکه");
 
-        View tabTwo =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
-        text = (TextView)tabTwo.findViewById(R.id.text);
-        icon = (ImageView)tabTwo.findViewById(R.id.icon);
-        text.setText("سکه رایگان");
-//        icon.setImageResource(R.drawable.free_coin);
-        posts.setCustomView(tabTwo);
+//        telegram.setIcon(درج اگهی);
+//        channels.setText("اگهی");
+        View tabTwo = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+        text = (TextView) tabTwo.findViewById(R.id.text);
+        icon = (ImageView) tabTwo.findViewById(R.id.icon);
+        text.setText(R.string.advertisingFragmentLeybel);
+//        icon.setImageResource(R.drawable.buy_coin);
+        advertisingFragmentTab.setCustomView(tabTwo);
 
-        View tabThree =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+//        posts.setText("کانال های من");
+//        joinCoins.setText("سفارش عضو");
 
-        text = (TextView)tabThree.findViewById(R.id.text);
-        icon = (ImageView)tabThree.findViewById(R.id.icon);
-        text.setText("سفارش عضو");
+        View tabThree = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+        text = (TextView) tabThree.findViewById(R.id.text);
+        icon = (ImageView) tabThree.findViewById(R.id.icon);
+        text.setText(R.string.myChannelFragmentLeybel);
 //        icon.setImageResource(R.drawable.member);
-        channels.setCustomView(tabThree);
+        myChannels.setCustomView(tabThree);
 
 
-        View tabFour =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
-        text = (TextView)tabFour.findViewById(R.id.text);
-        icon = (ImageView)tabFour.findViewById(R.id.icon);
-        text.setText("انتقال سکه");
+        View tabFour = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+        text = (TextView) tabFour.findViewById(R.id.text);
+        icon = (ImageView) tabFour.findViewById(R.id.icon);
+        text.setText(R.string.channelsFragmentLeybel);
 //        icon.setImageResource(R.drawable.free_coin);
+        ChannelsFragment.setCustomView(tabFour);
 
-        transfare.setCustomView(tabFour);
+
+
+//        View tabFour =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+//        text = (TextView)tabFour.findViewById(R.id.text);
+//        icon = (ImageView)tabFour.findViewById(R.id.icon);
+//        text.setText("انتقال سکه");
+////        icon.setImageResource(R.drawable.free_coin);
+//
+//        transfare.setCustomView(tabFour);
 
         /*channels.setIcon(R.drawable.free_coin);
         posts.setIcon(R.drawable.member);
@@ -104,12 +117,11 @@ public class Views {
 //        viewCoins.setIcon(R.drawable.ic_coin_eye);
 
 
-
 //        tabLayout.addTab(telegram, 0);
-        tabLayout.addTab(joinCoins, 0);
-        tabLayout.addTab(posts, 1);
-        tabLayout.addTab(channels, 2);
-        tabLayout.addTab(transfare, 3);
+        tabLayout.addTab(coinFragmentTab, 0);
+        tabLayout.addTab(advertisingFragmentTab, 1);
+        tabLayout.addTab(myChannels, 2);
+        tabLayout.addTab(ChannelsFragment, 3);
 
 //        tabLayout.setTabMode(ViewGroup.);
         tabLayout.setTabTextColors(ContextCompat.getColorStateList(context, R.color.abc_primary_text_material_dark));

@@ -3,7 +3,44 @@
 
 
 <resources>
+    <!-- add by vaezinia-->
+    <string name="coinFragmentLeybel">فروشگاه</string>
+    <string name="advertisingFragmentLeybel">اگهی</string>
+    <string name="myChannelFragmentLeybel">کانال های من</string>
+    <string name="channelsFragmentLeybel">سکه رایگان</string>
+    <string name="connectToMember">ارتباط با مخاطب</string>
+    <string name="adverSubmit">ثبت تبلیغات</string>
+    <string name="all">همگی</string>
+    <string name="messageDialogAdv1">لطفا شرایط مورد نظر خود را به تفکیک و دقیق بیان نمایید.</string>
+    <string name="messageDialogAdv2">پیگیری شکایات بر مبنای شرایط شما صورت می گیرد.</string>
+    <string name="messageDialogAdv3">در صورت عدم تایید مخاطب یا لغو در خواست ، تمام سکه های شما برگردانده می شود.</string>
+    <string name="optionDialogAdv1">شرط اول</string>
+    <string name="optionDialogAdv2">شرط دوم</string>
+    <string name="optionDialogAdv3">شرط سوم</string>
+    <string name="priceDialogAdv">تعداد سکه</string>
+    <string name="titleDialogAdv">شرایط سفارش دهنده</string>
+    <string name="buttonDialogAdv">ثبت و پرداخت سکه</string>
+    <string name="moreOptionDialogAdv">افزودن شرایط بیشتر</string>
+    <string name="errorDialogComplite">مقدار سکه وارد نشده است.</string>
+    <string-array name="condition">
+        <item>شرط اول</item>
+        <item>شرط دوم</item>
+        <item>شرط سوم</item>
+        <item>شرط چهارم</item>
+        <item>شرط پنجم</item>
+        <item>شرط ششم</item>
+        <item>شرط هفتم</item>
+        <item>شرط هشتم</item>
+        <item>شرط نهم</item>
+        <item>شرط دهم</item>
+    </string-array>
+
+
+
+
+
     <!-- My Tg Resources-->
+
     <string name="ViewBegir">بازدید بگیر</string>
     <string name="ViewBegirTitle">تعداد بازدید خود را انتخاب کنید</string>
     <string name="ViewsCountAlert">How many views do you want?</string>

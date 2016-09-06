@@ -381,6 +381,7 @@ public class LaunchActivity extends FragmentActivity implements ActionBarLayout.
 
                 else if (position == 3) {
                     Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://telegram.me/tefelgarddd"));
+
                     startActivity(telegram);
 
                     drawerLayoutContainer.closeDrawer(false);
