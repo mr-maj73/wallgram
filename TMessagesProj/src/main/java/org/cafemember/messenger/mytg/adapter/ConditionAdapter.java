@@ -33,10 +33,10 @@ public class ConditionAdapter extends
 
     private Context context;
     private String[] hints;
-    Map<Integer, String> condition;
+    ArrayList<String> condition;
 
 
-    public ConditionAdapter(Context context, Map<String, String> condition) {
+    public ConditionAdapter(Context context, ArrayList<String> condition) {
         this.context = context;
         this.condition = condition;
         hints = context.getResources().getStringArray(R.array.condition);
@@ -50,35 +50,19 @@ public class ConditionAdapter extends
 
     }
 
+
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
         final String hin = hints[position];
+        String item = condition.get(position);
 
-        final RecyclerViewHolder mainHolder = (RecyclerViewHolder) holder;// holder
+//        final RecyclerViewHolder mainHolder = (RecyclerViewHolder) holder;// holder
 
-        final String key = "" + position;
-        mainHolder.edtCondition.setHint(hin);
-        Log.i("mohammad", "1" + condition.get("" + position) + "  " + position);
-        mainHolder.edtCondition.setText(condition.get("" + position));
-        Log.i("mohammad", "2" + condition.get("" + position) + "  " + position);
-        mainHolder.edtCondition.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        holder.myCustomEditTextListener.updatePosition(position);
+        holder.edtCondition.setText(condition.get(position));
+        holder.edtCondition.setHint(hin);
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-    //            Log.i("mohammad", "3"+condition.get("" + position)+"  "+position);
-                condition.put(key, mainHolder.edtCondition.getText().toString());
-    //            Log.i("mohammad","4"+ condition.get("" + position)+"  "+position);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
     }
 
@@ -90,7 +74,7 @@ public class ConditionAdapter extends
 
         ViewGroup mainGroup = (ViewGroup) mInflater.inflate(
                 R.layout.item_list_dialog, viewGroup, false);
-        RecyclerViewHolder listHolder = new RecyclerViewHolder(mainGroup);
+        RecyclerViewHolder listHolder = new RecyclerViewHolder(mainGroup, new MyCustomEditTextListener());
         return listHolder;
 
     }
@@ -100,11 +84,14 @@ public class ConditionAdapter extends
 
         public EditText edtCondition;
 
+        public MyCustomEditTextListener myCustomEditTextListener;
 
-        public RecyclerViewHolder(View view) {
-            super(view);
+        public RecyclerViewHolder(View v, MyCustomEditTextListener myCustomEditTextListener) {
+            super(v);
 
-            this.edtCondition = (EditText) view.findViewById(R.id.edtCondition);
+            this.edtCondition = (EditText) v.findViewById(R.id.edtCondition);
+            this.myCustomEditTextListener = myCustomEditTextListener;
+            this.edtCondition.addTextChangedListener(myCustomEditTextListener);
 
 
         }
@@ -112,11 +99,35 @@ public class ConditionAdapter extends
 
     }
 
-    public Map<String, String> getcondition() {
+    public ArrayList<String> getcondition() {
         return condition;
 
     }
+    private class MyCustomEditTextListener implements TextWatcher {
+        private int position;
 
+        public void updatePosition(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            // no op
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            condition.remove(position);
+            String text = editable.toString();
+            condition.add(position, text);
+            // no op
+        }
+    }
 
 }
 

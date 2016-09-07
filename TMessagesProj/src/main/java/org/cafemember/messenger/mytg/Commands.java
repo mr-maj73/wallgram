@@ -991,39 +991,39 @@ public class Commands {
     }
 
 
-    public static void acceptAd(int id, final OnJoinSuccess success) {
+    public static void acceptAd(int id, final OnResponseReadyListener success) {
         API.getInstance().post(String.format(Locale.ENGLISH, "/wall/accept/%d", id), "", new OnResponseReadyListener() {
             @Override
             public void OnResponseReady(boolean error, JSONObject data, String message) {
                 if (!error) {
 
                     loadCoins(data);
-                    success.OnResponse(true);
+                    success.OnResponseReady(false,null,message);
                 } else {
-                    success.OnResponse(false);
+                    success.OnResponseReady(true,null,message);
                     Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public static void reportAd(int id, final OnJoinSuccess success) {
+    public static void reportAd(int id, final OnResponseReadyListener success) {
         API.getInstance().post(String.format(Locale.ENGLISH, "/wall/report/%d", id), "", new OnResponseReadyListener() {
             @Override
             public void OnResponseReady(boolean error, JSONObject data, String message) {
                 if (!error) {
 
                     loadCoins(data);
-                    success.OnResponse(true);
+                    success.OnResponseReady(false,null,message);
                 } else {
-                    success.OnResponse(false);
+                    success.OnResponseReady(true,null,message);
                     Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public static void suggest(int wallId,int price,String rule, final OnJoinSuccess success) {
+    public static void suggest(int wallId,int price,String rule, final OnResponseReadyListener success) {
         String body = String.format(Locale.ENGLISH, "{\"wall_id\":%d, \"price\":%d, \"rule\":\"%s\"}",wallId, price, rule);
         API.getInstance().post(String.format(Locale.ENGLISH, "/wall/suggest"), body, new OnResponseReadyListener() {
             @Override
@@ -1031,43 +1031,43 @@ public class Commands {
                 if (!error) {
 
                     loadCoins(data);
-                    success.OnResponse(true);
+                    success.OnResponseReady(false,null,message);
                 } else {
-                    success.OnResponse(false);
+                    success.OnResponseReady(true,null,message);
                     Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public static void addChannel(final OnJoinSuccess success) {
-//        String body = String.format(Locale.ENGLISH, "{\"wall_id\":%d, \"price\":%d, \"rule\":\"%s\"}",wallId, price, rule);
-        String body = "";
+    public static void addChannel(int channelId,int categoryId,int price,String admin_link,String description, final OnResponseReadyListener success) {
+        String body = String.format(Locale.ENGLISH, "{\"channel_id\":%d,\"cat_id\":%d, \"price\":%d,\"admin_link\":\"%s\", \"desc\":\"%s\"}",channelId,categoryId, price, admin_link,description);
         API.getInstance().post(String.format(Locale.ENGLISH, "/wall/addChannel"), body, new OnResponseReadyListener() {
             @Override
             public void OnResponseReady(boolean error, JSONObject data, String message) {
                 if (!error) {
 
                     loadCoins(data);
-                    success.OnResponse(true);
+                    success.OnResponseReady(false,null,message);
                 } else {
-                    success.OnResponse(false);
+                    success.OnResponseReady(true,null,message);
                     Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public static void rejectAd(int id, final OnJoinSuccess success) {
+
+    public static void rejectAd(int id, final OnResponseReadyListener success) {
         API.getInstance().post(String.format(Locale.ENGLISH, "/wall/reject/%d", id), "", new OnResponseReadyListener() {
             @Override
             public void OnResponseReady(boolean error, JSONObject data, String message) {
                 if (!error) {
 
                     loadCoins(data);
-                    success.OnResponse(true);
+                    success.OnResponseReady(false,null,message);
                 } else {
-                    success.OnResponse(false);
+                    success.OnResponseReady(true,null,message);
                     Toast.makeText(ApplicationLoader.applicationContext, message, Toast.LENGTH_SHORT).show();
                 }
             }

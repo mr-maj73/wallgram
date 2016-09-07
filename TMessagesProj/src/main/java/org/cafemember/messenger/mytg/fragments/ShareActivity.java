@@ -164,9 +164,9 @@ public class ShareActivity extends BaseFragment {
             Intent intent = new Intent(Intent.ACTION_SEND);
 //            Uri pictureUri = Uri.parse("file://my_picture");
             Uri uri = Uri.parse("android.resource://org.cafemember.messenger/"
-                    +R.drawable.cafe_share_icon);
+                    +R.drawable.icon);
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            Bitmap icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.cafe_share_icon);
+            Bitmap icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.icon);
             icon.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
             File f = new File(Environment.getExternalStorageDirectory() + File.separator + "temporary_file.jpg");
             try {

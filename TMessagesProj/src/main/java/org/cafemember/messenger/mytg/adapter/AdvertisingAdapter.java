@@ -76,7 +76,7 @@ public class AdvertisingAdapter extends
         mainHolder.laySubmitAdv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                advertisingFragment.showDialog();
+                advertisingFragment.showDialog(channelAdv.id);
             }
         });
 

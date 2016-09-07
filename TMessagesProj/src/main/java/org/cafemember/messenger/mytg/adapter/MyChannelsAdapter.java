@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import org.cafemember.messenger.LocaleController;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Channel;
 import org.cafemember.messenger.mytg.Commands;
+import org.cafemember.messenger.mytg.Dialog.AddRequstAdvertisingDialog;
+import org.cafemember.messenger.mytg.Dialog.AdvertisingDialog;
 import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.fragments.MyChannelFragment;
 import org.cafemember.messenger.mytg.listeners.OnJoinSuccess;
@@ -44,6 +47,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
     private final DialogsActivity dialogsActivity;
     private ArrayList<Channel> channels;
     private AlertDialog alertDialog;
+
     public MyChannelsAdapter(Context context, int resource, ArrayList<Channel> objects, MyChannelFragment myChannelFragment, DialogsActivity dialogsActivity) {
         super(context, resource, objects);
         channels = objects;
@@ -54,22 +58,20 @@ public class MyChannelsAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View v, ViewGroup parent) {
         final Channel channel = getItem(position);
-        MyChannelViewHolder viewHolder ;
+        MyChannelViewHolder viewHolder;
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
             v = vi.inflate(R.layout.my_channel_item, parent, false);
             viewHolder = new MyChannelViewHolder();
-            viewHolder.name = (TextView)v.findViewById(R.id.name);
-            viewHolder.title = (TextView)v.findViewById(R.id.title);
-            viewHolder.image = (ImageView)v.findViewById(R.id.image);
-            viewHolder.add = (Button)v.findViewById(R.id.reserve);
-            viewHolder.delete = (Button)v.findViewById(R.id.delete);
+            viewHolder.name = (TextView) v.findViewById(R.id.name);
+            viewHolder.title = (TextView) v.findViewById(R.id.title);
+            viewHolder.image = (ImageView) v.findViewById(R.id.image);
+            viewHolder.add = (Button) v.findViewById(R.id.reserve);
+            viewHolder.selectMemebers = (Button) v.findViewById(R.id.selectMemebers);
             v.setTag(viewHolder);
-        }
-
-        else {
-            viewHolder = (MyChannelViewHolder)v.getTag();
+        } else {
+            viewHolder = (MyChannelViewHolder) v.getTag();
         }
 
 
@@ -79,25 +81,23 @@ public class MyChannelsAdapter extends ArrayAdapter {
         int avatarLeft = AndroidUtilities.dp(AndroidUtilities.isTablet() ? 13 : 9);
         int avatarTop = AndroidUtilities.dp(10);
         viewHolder.avatarImage.setImageCoords(avatarLeft, avatarTop, AndroidUtilities.dp(52), AndroidUtilities.dp(52));
-        viewHolder.avatarDrawable.setInfo((int)channel.id, channel.name, null, channel.id < 0);
+        viewHolder.avatarDrawable.setInfo((int) channel.id, channel.name, null, channel.id < 0);
         Bitmap bitmap = null;
-        if(channel.hasPhoto){
+        if (channel.hasPhoto) {
 //            Log.e("MY",channel.name+"Has Photo");
             bitmap = channel.getBitMap();
-        }
-        else {
+        } else {
 //            Log.e("MY",channel.name+"Has NOT Photo");
-            if(channel.photo != null) {
+            if (channel.photo != null) {
 //                Log.e("MY",channel.name+"Has Online");
                 TLRPC.FileLocation photo = null;
                 photo = channel.photo;
                 viewHolder.avatarImage.setImage(photo, "50_50", viewHolder.avatarDrawable, null, false);
                 bitmap = viewHolder.avatarImage.getBitmap();
-                if(bitmap != null) {
+                if (bitmap != null) {
                     Commands.updateChannel(channel, bitmap);
 
-                }
-                else {
+                } else {
                     final MyChannelViewHolder cvh = viewHolder;
                     Thread t = new Thread(new Runnable() {
                         @Override
@@ -122,7 +122,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                            }while (bitmap == null);
+                            } while (bitmap == null);
                         }
                     });
                     t.start();
@@ -130,51 +130,42 @@ public class MyChannelsAdapter extends ArrayAdapter {
             }
 
         }
-        if(bitmap != null){
+        if (bitmap != null) {
 //            Log.e("MY",channel.name+"Ready");
             viewHolder.image.setImageBitmap(bitmap);
-        }
-        else
-        {
+        } else {
 //            Log.e("MY",channel.name+"Default");
             viewHolder.image.setImageResource(R.drawable.default_channel_icon);
         }
         viewHolder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://telegram.me/"+channel.name));
+                Intent telegram = new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/" + channel.name));
                 getContext().startActivity(telegram);
             }
         });
         viewHolder.name.setText(channel.name);
         viewHolder.title.setText(channel.title);
-        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+        viewHolder.selectMemebers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myChannelFragment.setLoader(View.VISIBLE);
-                Commands.removeChannel(channel, new OnJoinSuccess() {
-                    @Override
-                    public void OnResponse(boolean ok) {
-                        myChannelFragment.setLoader(View.GONE);
-                        if(ok){
-                            remove(channel);
-                            notifyDataSetChanged();
-                        }
-                    }
-                });
-
-            }
-        });
-        final MyChannelViewHolder holder = viewHolder;
-        viewHolder.add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Log.d("MyChannel","OnClick Triggerd");
+//                myChannelFragment.setLoader(View.VISIBLE);
+//                Commands.removeChannel(channel, new OnJoinSuccess() {
+//                    @Override
+//                    public void OnResponse(boolean ok) {
+//                        myChannelFragment.setLoader(View.GONE);
+//                        if(ok){
+//                            remove(channel);
+//                            notifyDataSetChanged();
+//                        }
+//                    }
+//                });
+                Log.d("MyChannel", "OnClick Triggerd");
 
 //                Log.d("COMMAND","AddChannel Triggerd");
                 final int channelId = (int) channel.id;
-                AlertDialog.Builder builder ;
-                    builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder;
+                builder = new AlertDialog.Builder(getContext());
 
                 builder.setTitle(LocaleController.getString("MemberBegirTitle", R.string.MemberBegirTitle));
 
@@ -184,17 +175,17 @@ public class MyChannelsAdapter extends ArrayAdapter {
                                     Commands.addChannel(chat,Integer.parseInt(Defaults.MEMBERS_COUNT[which]));
                                 }
                             });*/
-                ReserveAdapter reserveAdapter = new ReserveAdapter(getContext(),R.layout.adapter_buy_coin,channel);
+                ReserveAdapter reserveAdapter = new ReserveAdapter(getContext(), R.layout.adapter_buy_coin, channel);
                 reserveAdapter.setOnClickListener(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 //                        Log.d("COMMAND","OnClick Triggerd 2");
                         final int count = Integer.parseInt(Defaults.MEMBERS_COUNT[which]);
                         Bitmap b = null;
-                            b = channel.getBitMap();
+                        b = channel.getBitMap();
                         myChannelFragment.setLoader(View.VISIBLE);
-                        Commands.addChannel(channel,count,b,dialogsActivity, myChannelFragment);
-                        if(alertDialog != null && alertDialog.isShowing()){
+                        Commands.addChannel(channel, count, b, dialogsActivity, myChannelFragment);
+                        if (alertDialog != null && alertDialog.isShowing()) {
                             alertDialog.dismiss();
                         }
                     }
@@ -204,6 +195,14 @@ public class MyChannelsAdapter extends ArrayAdapter {
                 builder.setCancelable(true);
                 alertDialog = builder.create();
                 dialogsActivity.showDialog(alertDialog);
+
+
+            }
+        });
+        final MyChannelViewHolder holder = viewHolder;
+        viewHolder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
             }
@@ -220,13 +219,19 @@ public class MyChannelsAdapter extends ArrayAdapter {
 
     public class MyChannelViewHolder {
 
-        TextView name ;
-        ImageView image ;
+        TextView name;
+        ImageView image;
         Button add;
-        Button delete;
-        TextView title ;
+        Button selectMemebers;
+        TextView title;
         ImageReceiver avatarImage;
         AvatarDrawable avatarDrawable;
+
+    }
+
+    public void showDialogAddMember(long id) {
+        DialogFragment newFragment = AddRequstAdvertisingDialog.newInstance(id);
+        newFragment.show(myChannelFragment.getFragmentManager(), "dialog");
 
     }
 }

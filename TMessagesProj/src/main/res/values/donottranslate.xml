@@ -22,6 +22,16 @@
     <string name="buttonDialogAdv">ثبت و پرداخت سکه</string>
     <string name="moreOptionDialogAdv">افزودن شرایط بیشتر</string>
     <string name="errorDialogComplite">مقدار سکه وارد نشده است.</string>
+    <string name="errorDialogConnect">خطا در برقراری ارتباط</string>
+    <string name="titleDialogAddMemebers">درج اگهی</string>
+    <string name="alertDialogAddMemebers1">درج اکهی شما....</string>
+    <string name="alertDialogAddMemebers2">درج اگهی شما ....</string>
+    <string name="spinnerDialogAddMemebers2">دسته بندی</string>
+    <string name="descriptionDialogAddMemebers2">توضیحات</string>
+    <string name="submitDialogAddMemebers">ثبت</string>
+    <string name="linkAdminDialogAddMemebers2">لینک ارتباط با مدیر</string>
+
+
     <string-array name="condition">
         <item>شرط اول</item>
         <item>شرط دوم</item>

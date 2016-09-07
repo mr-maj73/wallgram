@@ -13,20 +13,6 @@
         android:orientation="vertical">
 
 
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/newChannel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
-            android:src="@drawable/add"
-            app:fab_colorNormal="@color/colorBlue"
-            app:fab_colorPressed="@color/colorBlue"
-
-            />
-
-
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swip"
             android:layout_width="match_parent"
@@ -39,6 +25,19 @@
                 android:cacheColorHint="#00000000"
                 android:divider="#00000000" />
         </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/newChannel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/add"
+            app:fab_colorNormal="@color/colorBlue"
+            app:fab_colorPressed="@color/colorBlue"
+
+            />
 
 
     </RelativeLayout>
