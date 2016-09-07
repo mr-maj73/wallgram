@@ -1,164 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/titleDialogAddMemebers"
-            android:id="@+id/textView8"
-            android:textColor="@color/titleDialogColor"
             android:gravity="center"
-            android:paddingTop="25dp"
             android:paddingBottom="15dp"
+            android:paddingTop="25dp"
+            android:text="@string/titleDialogAddMemebers"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/titleDialogColor"
             android:textSize="22sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/alertDialogAddMemebers1"
-            android:id="@+id/textView9"
             android:layout_weight="1"
             android:gravity="center_vertical|right"
+            android:text="@string/alertDialogAddMemebers1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/messageDialogColor" />
 
         <ImageView
+            android:id="@+id/imageView6"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:id="@+id/imageView6"
-            android:src="@drawable/warning_red"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/warning_red" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/edtPriceAddMember"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|right"
+                android:hint="@string/priceDialogAdv"
+                android:inputType="number"
+                android:layout_weight="1" />
+
+
+
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/coin_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical"
         android:gravity="center_vertical|right">
 
+        <Spinner
+            android:id="@+id/spinnerAddMember"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="60dp"
+            android:paddingRight="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <EditText
-            android:layout_width="180dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/edtPriceAddMember"
-            android:inputType="number"
-            android:hint="@string/priceDialogAdv"
+            android:id="@+id/edtDescriptionAddMember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:gravity="center_vertical|right"
-            android:textColorHint="@color/hint"
+            android:hint="@string/descriptionDialogAddMemebers2"
+            android:textColor="@color/hint"
+            android:textColorHint="@color/hint" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtAdminLinkAddMember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:gravity="center_vertical|right"
+            android:hint="@string/linkAdminDialogAddMemebers2"
+            android:textColor="@color/hint"
+            android:textColorHint="@color/hint" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:text="@string/alertDialogAddMemebers2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/hint" />
 
         <ImageView
+            android:id="@+id/imageView10"
             android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:id="@+id/imageView7"
-            android:src="@drawable/coin_gray"
-            android:scaleType="fitXY" />
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="center"
+            android:src="@drawable/warning_gray" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/submitAddMemberLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <Spinner
+        <TextView
+            android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerAddMember" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtDescriptionAddMember"
-            android:gravity="center_vertical|right"
-            android:textColorHint="@color/hint"
-            android:hint="@string/descriptionDialogAddMemebers2"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:textColor="@color/hint" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtAdminLinkAddMember"
-            android:gravity="center_vertical|right"
-            android:textColorHint="@color/hint"
-            android:hint="@string/linkAdminDialogAddMemebers2"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:textColor="@color/hint" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="60dp" >
+            android:paddingBottom="4dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
+            android:text="@string/submitDialogAddMemebers"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/messageDialogColor"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/alertDialogAddMemebers2"
-            android:id="@+id/textView14"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/txtAlertDialogAddMember"
             android:layout_weight="1"
             android:gravity="center_vertical|right"
-            android:textColor="@color/hint" />
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:id="@+id/imageView10"
-            android:src="@drawable/warning_gray"
-            android:scaleType="center"
-            android:layout_marginTop="10dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/submitAddMemberLayout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/submitDialogAddMemebers"
-            android:id="@+id/textView15"
             android:textColor="@color/messageDialogColor"
-            android:textSize="24sp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:paddingRight="4dp"
-            android:paddingLeft="16dp" />
+            android:paddingRight="25dp" />
     </LinearLayout>
 </LinearLayout>

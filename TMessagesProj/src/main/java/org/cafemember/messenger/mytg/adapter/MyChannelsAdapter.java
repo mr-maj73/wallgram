@@ -204,7 +204,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
 
-
+                showDialogAddMember(30);
             }
         });
         FontManager.instance().setTypefaceImmediate(v);

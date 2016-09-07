@@ -3,7 +3,7 @@ package org.cafemember.messenger.mytg.Dialog;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
+
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +19,6 @@ import android.widget.TextView;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Commands;
 import org.cafemember.messenger.mytg.adapter.ConditionAdapter;
-import org.cafemember.messenger.mytg.listeners.OnJoinSuccess;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
 import org.json.JSONObject;
 
@@ -47,12 +46,13 @@ public class AdvertisingDialog extends DialogFragment {
     public ArrayList<String> condition = new ArrayList<String>();
     ConditionAdapter adapter;
     int i = 3;
-    TextInputLayout layPrice;
+//    TextInputLayout layPrice;
     EditText edtPriceDialog;
     TextView txtErrorDialog;
     LinearLayout layMoreCondition;
     TextView txtSubmitDialog;
     RecyclerView listCondition;
+    int price=-780;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +62,7 @@ public class AdvertisingDialog extends DialogFragment {
         View v = inflater.inflate(R.layout.advertising_dialog, container, false);
         //  View tv = v.findViewById(R.id.text);
         //   ((TextView)tv).setText("This is an instance of MyDialogFragment");
-        layPrice = (TextInputLayout) v.findViewById(R.id.layPrice);
+//        layPrice = (TextInputLayout) v.findViewById(R.id.layPrice);
         edtPriceDialog = (EditText) v.findViewById(R.id.edtPriceDialog);
         txtErrorDialog = (TextView) v.findViewById(R.id.txtErrorDialog);
         layMoreCondition = (LinearLayout) v.findViewById(R.id.layMoreCondition);
@@ -100,10 +100,18 @@ public class AdvertisingDialog extends DialogFragment {
         txtSubmitDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edtPriceDialog.getText().toString() == null || edtPriceDialog.getText().toString().length() < 1) {
-                    txtErrorDialog.setText(R.string.errorDialogComplite);
+                if(edtPriceDialog.getText().toString() != null && edtPriceDialog.getText().toString().length()>0) {
+                    try {
+                        price = Integer.parseInt(edtPriceDialog.getText().toString());
+                    }catch (Exception e){
+                        txtErrorDialog.setText(R.string.errorDialogComplite);
+                        return;
+                    }
+
+                }else {
                     return;
                 }
+
                 String cond = "";
 
                 ArrayList<String> list = new ArrayList<String>();

@@ -30,6 +30,8 @@
     <string name="descriptionDialogAddMemebers2">توضیحات</string>
     <string name="submitDialogAddMemebers">ثبت</string>
     <string name="linkAdminDialogAddMemebers2">لینک ارتباط با مدیر</string>
+    <string name="errorInputNumberAddMember">قیمت به درستی وارد نشده است!</string>
+    <string name="errorCompliteAddMember">تمام موارد به درستی کامل نگشته است!</string>
 
 
     <string-array name="condition">
