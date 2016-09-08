@@ -51,17 +51,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|right"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp">
 
 
             <EditText
                 android:id="@+id/edtPriceAddMember"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical|right"
                 android:hint="@string/priceDialogAdv"
-                android:inputType="number"
-                android:layout_weight="1" />
+                android:inputType="number" />
 
 
 
@@ -79,21 +80,26 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="vertical"
-        android:gravity="center_vertical|right">
+        android:gravity="center_vertical|right"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp">
 
         <Spinner
             android:id="@+id/spinnerAddMember"
-            android:layout_width="200dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="60dp"
-            android:paddingRight="8dp" />
+            android:paddingRight="8dp"
+            android:layout_marginLeft="60dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp">
 
         <EditText
             android:id="@+id/edtDescriptionAddMember"
@@ -111,7 +117,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp">
 
         <EditText
             android:id="@+id/edtAdminLinkAddMember"
@@ -154,20 +162,23 @@
         android:id="@+id/submitAddMemberLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="4dp"
-            android:paddingLeft="16dp"
+            android:paddingLeft="25dp"
             android:paddingRight="4dp"
             android:paddingTop="4dp"
             android:text="@string/submitDialogAddMemebers"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/messageDialogColor"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:layout_width="0dp"

@@ -107,7 +107,7 @@ public class DrawerLayoutAdapter extends BaseAdapter {
                 } else if (i == 9) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuShare", R.string.MenuShare), R.drawable.my_menu_share);
                 } else if (i == 10) {
-                    actionCell.setTextAndIcon(LocaleController.getString("MenuMilShow", R.string.MenuMilShow), R.drawable.my_menu_money);
+                    actionCell.setTextAndIcon(LocaleController.getString("MenuMyAds", R.string.MenuMyAds), R.drawable.my_menu_money);
                 }else if (i == 12) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuExit", R.string.MenuExit), R.drawable.menu_settings);
                 } else if (i == 11) {

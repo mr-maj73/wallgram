@@ -32,6 +32,15 @@
     <string name="linkAdminDialogAddMemebers2">لینک ارتباط با مدیر</string>
     <string name="errorInputNumberAddMember">قیمت به درستی وارد نشده است!</string>
     <string name="errorCompliteAddMember">تمام موارد به درستی کامل نگشته است!</string>
+    <string name="categoryMySuggestAdz">دسته بندی : </string>
+    <string name="descriptionMySuggestAdz">توضیحات : </string>
+    <string name="noMySuggestAdz">هیچ پیشنهادی موجود نیست.</string>
+    <string name="noNumberMySuggestAdz">***</string>
+    <string name="showMySuggestAdz">بررسی پیشنهاد</string>
+    <string name="titleDialogShowSugeest">شرایط سفارش دهنده</string>
+    <string name="okDialogShowSugeest">تایید</string>
+    <string name="noDialogShowSugeest">لغو</string>
+
 
 
     <string-array name="condition">
@@ -89,6 +98,7 @@
     <string name="MenuExit">خروج از برنامه</string>
     <string name="MenuRate">امتیاز دادن</string>
     <string name="MenuChannel">کانال ما</string>
+    <string name="MenuMyAds">آگهی های من</string>
     <string name="MenuMilShow">نحوه کسب درامد از کانال</string>
 
     <string name="NewChannelTitle">ثبت کانال جدید</string>

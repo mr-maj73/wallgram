@@ -13,11 +13,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.CategoryChannel;
 import org.cafemember.messenger.mytg.Commands;
 import org.cafemember.messenger.mytg.adapter.SpinnerAdapter;
+import org.cafemember.messenger.mytg.fragments.MyChannelFragment;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,7 +82,18 @@ public class AddRequstAdvertisingDialog extends DialogFragment {
                 if (!checkparams()) {
                     return;
                }
-           //    Commands.
+               Commands.addChannel((int) id, category_id, price, link, description, new OnResponseReadyListener() {
+                   @Override
+                   public void OnResponseReady(boolean error, JSONObject data, String message) {
+                      if(error) {
+                          txtAlertDialogAddMember.setText(message);
+                          txtAlertDialogAddMember.setVisibility(View.VISIBLE);
+                      }else {
+
+                          dismiss();
+                      }
+                   }
+               });
 
 
             }

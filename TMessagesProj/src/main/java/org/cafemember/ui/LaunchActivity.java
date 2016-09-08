@@ -67,6 +67,7 @@ import org.cafemember.messenger.mytg.fragments.FAQActivity;
 import org.cafemember.messenger.mytg.fragments.HelpActivity;
 import org.cafemember.messenger.mytg.fragments.HistoryActivity;
 import org.cafemember.messenger.mytg.fragments.MilShowActivity;
+import org.cafemember.messenger.mytg.fragments.MySuggestAds;
 import org.cafemember.messenger.mytg.fragments.RulesActivity;
 import org.cafemember.messenger.mytg.fragments.ShareActivity;
 import org.cafemember.messenger.mytg.util.Defaults;
@@ -350,7 +351,7 @@ public class LaunchActivity extends FragmentActivity implements ActionBarLayout.
                 else if (position == 10) {
 
                     try {
-                        MilShowActivity his = new MilShowActivity();
+                        MySuggestAds his = new MySuggestAds();
                         presentFragment(his);
                     } catch (Exception e) {
                         FileLog.e("tmessages", e);
