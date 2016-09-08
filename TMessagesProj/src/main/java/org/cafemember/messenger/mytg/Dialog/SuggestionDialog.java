@@ -95,7 +95,7 @@ public class SuggestionDialog extends DialogFragment {
                     @Override
                     public void OnResponseReady(boolean error, JSONObject data, String message) {
                         if (!error) {
-                            mySuggestAdsAdapter.removeItem(object,id);
+                            mySuggestAdsAdapter.removeItem(object,numberSuggest);
                             view.removeViewAt(numberSuggest);
                             dismiss();
                         } else {
@@ -114,7 +114,7 @@ public class SuggestionDialog extends DialogFragment {
                     @Override
                     public void OnResponseReady(boolean error, JSONObject data, String message) {
                         if (!error) {
-                            mySuggestAdsAdapter.removeItem(object,id);
+                            mySuggestAdsAdapter.removeItem(object,numberSuggest);
                             view.removeViewAt(numberSuggest);
                             dismiss();
                         } else {
