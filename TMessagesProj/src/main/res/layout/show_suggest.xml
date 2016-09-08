@@ -28,6 +28,11 @@
             android:layout_height="match_parent"
             android:id="@+id/scrollViewSuggest" >
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/layoutSuggest"></LinearLayout>
         </ScrollView>
     </LinearLayout>
 

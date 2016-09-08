@@ -15,10 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.CategoryChannel;
 import org.cafemember.messenger.mytg.Commands;
+import org.cafemember.messenger.mytg.adapter.MySuggestAdsAdapter;
 import org.cafemember.messenger.mytg.adapter.SpinnerAdapter;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
 import org.json.JSONArray;
@@ -43,19 +45,23 @@ public class SuggestionDialog extends DialogFragment {
     LinearLayout rejectSuggestLay;
     String[] rules;
     int numberSuggest;
-
-    public static SuggestionDialog newInstance(int id, String options, ViewGroup view, int numberSuggest) {
-        return new SuggestionDialog(id, options, view, numberSuggest);
+    private LinearLayout layoutSuggest;
+    MySuggestAdsAdapter mySuggestAdsAdapter;
+    int object;
+    public static SuggestionDialog newInstance(int id, String options, ViewGroup view, int numberSuggest,MySuggestAdsAdapter mySuggestAdsAdapter,int object) {
+        return new SuggestionDialog(id, options, view, numberSuggest,mySuggestAdsAdapter, object);
     }
 
 
     @SuppressLint("ValidFragment")
-    public SuggestionDialog(int id, String options, ViewGroup view, int numberSuggest) {
+    public SuggestionDialog(int id, String options, ViewGroup view, int numberSuggest,MySuggestAdsAdapter mySuggestAdsAdapter,int object) {
         super();
         this.id = id;
         this.options = options;
         this.view = view;
         this.numberSuggest = numberSuggest;
+        this.mySuggestAdsAdapter = mySuggestAdsAdapter;
+        this. object = object;
     }
 
 
@@ -68,6 +74,7 @@ public class SuggestionDialog extends DialogFragment {
 
         accseptSuggestLay = (LinearLayout) v.findViewById(R.id.accseptSuggestLay);
         rejectSuggestLay = (LinearLayout) v.findViewById(R.id.rejectSuggestLay);
+        layoutSuggest = (LinearLayout) v.findViewById(R.id.layoutSuggest);
         scrollViewSuggest = (ScrollView) v.findViewById(R.id.scrollViewSuggest);
 
         if (options.length() > 0) {
@@ -77,20 +84,44 @@ public class SuggestionDialog extends DialogFragment {
                 View child = inflater.inflate(R.layout.show_suggest_item, null);
                 TextView txtSuggestItem = (TextView) child.findViewById(R.id.txtSuggestItem);
                 txtSuggestItem.setText(rules[i]);
-                scrollViewSuggest.addView(child);
+                layoutSuggest.addView(child);
             }
         }
         accseptSuggestLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view.removeViewAt(numberSuggest);
+                Commands.acceptAd(id, new OnResponseReadyListener() {
+                    @Override
+                    public void OnResponseReady(boolean error, JSONObject data, String message) {
+                        if (!error) {
+                            mySuggestAdsAdapter.removeItem(object,id);
+                            view.removeViewAt(numberSuggest);
+                            dismiss();
+                        } else {
+                            Toast.makeText(getActivity(), "vdvfv", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
 
             }
         });
         rejectSuggestLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view.removeViewAt(numberSuggest);
+                Commands.rejectAd(id, new OnResponseReadyListener() {
+                    @Override
+                    public void OnResponseReady(boolean error, JSONObject data, String message) {
+                        if (!error) {
+                            mySuggestAdsAdapter.removeItem(object,id);
+                            view.removeViewAt(numberSuggest);
+                            dismiss();
+                        } else {
+                            Toast.makeText(getActivity(), "vdvfv", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
 
