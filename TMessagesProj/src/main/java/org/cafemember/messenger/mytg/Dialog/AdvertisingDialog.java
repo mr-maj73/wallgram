@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Commands;
+import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.adapter.ConditionAdapter;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
 import org.json.JSONObject;
@@ -145,7 +146,7 @@ public class AdvertisingDialog extends DialogFragment {
 
         });
 
-
+        FontManager.instance().setTypefaceImmediate(v);
         return v;
     }
 }

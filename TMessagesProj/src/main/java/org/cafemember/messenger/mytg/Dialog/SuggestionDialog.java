@@ -19,6 +19,7 @@ import android.widget.TextView;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.CategoryChannel;
 import org.cafemember.messenger.mytg.Commands;
+import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.adapter.SpinnerAdapter;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
 import org.json.JSONArray;
@@ -93,6 +94,7 @@ public class SuggestionDialog extends DialogFragment {
                 view.removeViewAt(numberSuggest);
             }
         });
+        FontManager.instance().setTypefaceImmediate(v);
 
         return v;
     }

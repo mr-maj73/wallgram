@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.ChannelAdvertising;
+import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.fragments.AdvertisingFragment;
 
 import java.util.ArrayList;
@@ -92,6 +93,7 @@ public class ConditionAdapter extends
             this.edtCondition = (EditText) v.findViewById(R.id.edtCondition);
             this.myCustomEditTextListener = myCustomEditTextListener;
             this.edtCondition.addTextChangedListener(myCustomEditTextListener);
+            FontManager.instance().setTypefaceImmediate(v);
 
 
         }
