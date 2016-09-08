@@ -3,6 +3,7 @@ package org.cafemember.messenger.mytg.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import okio.ByteString;
 
 /**
@@ -33,20 +36,23 @@ public class MySuggestAdsAdapter extends ArrayAdapter
 {
     private JSONArray history;
     private MySuggestAds fragment;
-    private int index=1;
-
+    private int index = 1;
+    LayoutInflater vi;
 
     public MySuggestAdsAdapter(Context context, int resource, JSONArray objects, MySuggestAds fragment) {
         super(context, resource);
         history = objects;
         this.fragment = fragment;
+        vi = LayoutInflater.from(getContext());
+        jsonInitialize();
+
     }
 
     @Override
-    public View getView(int position, View v, ViewGroup parent) {
+    public View getView(final int position, View v, ViewGroup parent) {
         final JSONObject coin = getItem(position);
         HistoryViewHolder viewHolder;
-        LayoutInflater vi = LayoutInflater.from(getContext());
+
         if (v == null) {
 
             // vi = LayoutInflater.from(getContext());
@@ -65,8 +71,8 @@ public class MySuggestAdsAdapter extends ArrayAdapter
             viewHolder = (HistoryViewHolder) v.getTag();
         }
         try {
-            viewHolder.txtNosuggest.setVisibility(View.GONE);
 
+            viewHolder.laySuggest.removeAllViews();
             final String name = coin.getString("name");
             int id = coin.getInt("id");
             int price = coin.getInt("price");
@@ -74,10 +80,10 @@ public class MySuggestAdsAdapter extends ArrayAdapter
             String desc = coin.getString("desc");
             String byteString = coin.getString("byteString");
             String category = coin.getString("category");
-            String adsPrice = coin.getString("adsPrice");
-            String adsId = coin.getString("adsId");
-            String adsUser = coin.getString("adsUser");
-            String adsRule = coin.getString("adsRule");
+            final JSONArray adsPrice = coin.getJSONArray("adsPrice");
+            final JSONArray adsId = coin.getJSONArray("adsId");
+            final JSONArray adsUser = coin.getJSONArray("adsUser");
+            final JSONArray adsRule = coin.getJSONArray("adsRule");
             viewHolder.txtCategoty.setText(category);
             viewHolder.textDescription.setText("توضیحات : " + desc);
             if (name.length() > 0) {
@@ -92,45 +98,38 @@ public class MySuggestAdsAdapter extends ArrayAdapter
 
 
             if (adsUser.length() > 0) {
-                String[] prices = adsPrice.split("~");
-                String[] users = adsUser.split("~");
-                String[] ids = adsId.split("~");
-                String[] rules = adsRule.split("~");
-                for (int i = 0; i < ids.length; i++) {
+                for (int i = 0; i < adsUser.length(); i++) {
                     View child = vi.inflate(R.layout.item_suggest, null);
                     TextView childPrice = (TextView) child.findViewById(R.id.txtItemPrice);
                     TextView childmobile1 = (TextView) child.findViewById(R.id.txtMobile1);
                     TextView childmobile2 = (TextView) child.findViewById(R.id.txtMobile2);
                     TextView txtShowSuggest = (TextView) child.findViewById(R.id.txtShowSuggest);
-                    childPrice.setText(prices[i]);
-                    String mob = "0" + prices[i].substring(2, 5);
-                    childmobile1.setText("0" + users[i].substring(2, 5));
-                    childmobile2.setText("0" + users[i].substring(9));
+                    childPrice.setText((String) adsPrice.get(i));
+                    childmobile1.setText("0" + ((String) adsUser.get(i)).substring(2, 5));
+                    childmobile2.setText(((String) adsUser.get(i)).substring(9));
 
 
-                    final String option = rules[i];
-                    final int idSggest = Integer.parseInt(ids[i]);
+                    final String option = (String) adsRule.get(i);
+                    final int idSggest = Integer.parseInt((String) adsId.get(i));
                     final ViewGroup ve = viewHolder.laySuggest;
-                    final int numberSuggest=i++;
+                    final int numberSuggest = i;
                     txtShowSuggest.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            showDialogAddMember(idSggest, option, ve,numberSuggest);
+                            showDialogAddMember(idSggest, option, ve, numberSuggest, MySuggestAdsAdapter.this, position);
                         }
                     });
 
 
-                    viewHolder.laySuggest.addView(child,numberSuggest);
+                    viewHolder.laySuggest.addView(child, numberSuggest);
 
                 }
 
 
-            } else {
-                viewHolder.txtNosuggest.setVisibility(View.VISIBLE);
             }
 
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         FontManager.instance().setTypefaceImmediate(v);
@@ -165,11 +164,82 @@ public class MySuggestAdsAdapter extends ArrayAdapter
         LinearLayout laySuggest;
     }
 
-    public void showDialogAddMember(int id, String options, ViewGroup view,int numberSuggest) {
-        DialogFragment newFragment = SuggestionDialog.newInstance(id, options, view, numberSuggest);
+    public void showDialogAddMember(int id, String options, ViewGroup view, int numberSuggest, MySuggestAdsAdapter mySuggestAdsAdapter, int object) {
+        DialogFragment newFragment = SuggestionDialog.newInstance(id, options, view, numberSuggest, mySuggestAdsAdapter, object);
         Activity f = fragment.getParentActivity();
         if (f instanceof LaunchActivity) {
             newFragment.show(((LaunchActivity) f).getSupportFragmentManager(), "dialog");
+        }
+
+    }
+
+    private void jsonInitialize() {
+        try {
+            for (int i = 0; i < history.length(); i++) {
+                JSONObject js = (JSONObject) history.get(i);
+                String[] prices = js.getString("adsPrice").split("~");
+                String[] users = js.getString("adsUser").split("~");
+                String[] ids = js.getString("adsId").split("~");
+                String[] rules = js.getString("adsRule").split("~");
+                JSONArray jsonArray1 = new JSONArray();
+                JSONArray jsonArray2 = new JSONArray();
+                JSONArray jsonArray3 = new JSONArray();
+                JSONArray jsonArray4 = new JSONArray();
+                for (int j = 0; j < users.length; j++) {
+
+                    jsonArray1.put(prices[j]);
+                    jsonArray2.put(users[j]);
+                    jsonArray3.put(ids[j]);
+                    jsonArray4.put(rules[j]);
+
+                }
+                js.put("adsPrice", jsonArray1);
+                js.put("adsUser", jsonArray2);
+                js.put("adsId", jsonArray3);
+                js.put("adsRule", jsonArray4);
+
+                Log.i("jasonRference", history.toString(8));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void removeItem(int object, int id) {
+        ArrayList<String> list1 = new ArrayList<String>();
+        ArrayList<String> list2 = new ArrayList<String>();
+        ArrayList<String> list3 = new ArrayList<String>();
+        ArrayList<String> list4 = new ArrayList<String>();
+        try {
+            JSONObject js = (JSONObject) history.get(object);
+
+            JSONArray adsPrice = js.getJSONArray("adsPrice");
+            JSONArray adsId = js.getJSONArray("adsId");
+            JSONArray adsUser = js.getJSONArray("adsUser");
+            JSONArray adsRule = js.getJSONArray("adsRule");
+
+            int len = adsPrice.length();
+            if (adsPrice != null) {
+                for (int i = 0; i < len; i++) {
+                    list1.add(adsPrice.get(i).toString());
+                    list2.add(adsId.get(i).toString());
+                    list3.add(adsUser.get(i).toString());
+                    list4.add(adsRule.get(i).toString());
+                }
+            }
+            list1.remove(id);
+            list2.remove(id);
+            list3.remove(id);
+            list4.remove(id);
+            js.put("adsPrice", new JSONArray(list1));
+            js.put("adsUser", new JSONArray(list2));
+            js.put("adsId", new JSONArray(list3));
+            js.put("adsRule", new JSONArray(list4));
+        
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
     }
