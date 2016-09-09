@@ -3,6 +3,7 @@ package org.cafemember.messenger.mytg.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -60,8 +61,9 @@ public class ConditionAdapter extends
 //        final RecyclerViewHolder mainHolder = (RecyclerViewHolder) holder;// holder
 
         holder.myCustomEditTextListener.updatePosition(position);
-        holder.edtCondition.setText(condition.get(position));
         holder.edtCondition.setHint(hin);
+        holder.edtCondition.setText(condition.get(position));
+        holder.hintCondition.setHint(hin);
 
 
 
@@ -84,6 +86,7 @@ public class ConditionAdapter extends
         // View holder for gridview recycler view as we used in listview
 
         public EditText edtCondition;
+        public TextInputLayout hintCondition;
 
         public MyCustomEditTextListener myCustomEditTextListener;
 
@@ -91,6 +94,7 @@ public class ConditionAdapter extends
             super(v);
 
             this.edtCondition = (EditText) v.findViewById(R.id.edtCondition);
+            this.hintCondition = (TextInputLayout) v.findViewById(R.id.hintCondition);
             this.myCustomEditTextListener = myCustomEditTextListener;
             this.edtCondition.addTextChangedListener(myCustomEditTextListener);
             FontManager.instance().setTypefaceImmediate(v);

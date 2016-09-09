@@ -27,6 +27,7 @@ import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.KeyEvent;
@@ -94,9 +95,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LaunchActivity extends FragmentActivity implements ActionBarLayout.ActionBarLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
+public class LaunchActivity extends AppCompatActivity implements ActionBarLayout.ActionBarLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
 
-    private static final String PACKAGE_NAME = "ir.telemember.gram";
+    private static final String PACKAGE_NAME = "ir.atitec.atigram";
     private DialogsActivity dialogsFragment;
     private BaseFragment aFragment;
     private boolean finished;

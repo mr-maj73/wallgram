@@ -3,6 +3,7 @@
 
 
 <resources>
+    <string name="coin_count_hint">سکه</string>
     <!-- add by vaezinia-->
     <string name="coinFragmentLeybel">فروشگاه</string>
     <string name="advertisingFragmentLeybel">اگهی</string>
