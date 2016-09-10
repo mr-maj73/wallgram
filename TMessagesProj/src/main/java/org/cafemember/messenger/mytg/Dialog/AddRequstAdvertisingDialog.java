@@ -89,7 +89,7 @@ public class AddRequstAdvertisingDialog extends DialogFragment {
                           txtAlertDialogAddMember.setText(message);
                           txtAlertDialogAddMember.setVisibility(View.VISIBLE);
                       }else {
-
+                          Toast.makeText(getActivity(), getActivity().getResources().getText(R.string.successMessage), Toast.LENGTH_SHORT).show();
                           dismiss();
                       }
                    }

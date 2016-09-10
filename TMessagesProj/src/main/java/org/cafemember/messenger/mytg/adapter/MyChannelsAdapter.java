@@ -58,7 +58,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View v, ViewGroup parent) {
         final Channel channel = getItem(position);
-        MyChannelViewHolder viewHolder;
+        final MyChannelViewHolder viewHolder;
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
@@ -69,12 +69,57 @@ public class MyChannelsAdapter extends ArrayAdapter {
             viewHolder.image = (ImageView) v.findViewById(R.id.image);
             viewHolder.add = (Button) v.findViewById(R.id.reserve);
             viewHolder.selectMemebers = (Button) v.findViewById(R.id.selectMemebers);
+            viewHolder.reportLayout = (LinearLayout) v.findViewById(R.id.reportLayout);
+            viewHolder.imgMore = (ImageButton) v.findViewById(R.id.imgMore);
+            viewHolder.backLayout = (RelativeLayout) v.findViewById(R.id.backLayout);
+            viewHolder.txtReport = (TextView) v.findViewById(R.id.txtReport);
             v.setTag(viewHolder);
         } else {
             viewHolder = (MyChannelViewHolder) v.getTag();
         }
 
+        viewHolder.backLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (viewHolder.reportLayout.getVisibility() == View.VISIBLE) {
+                    viewHolder.reportLayout.setVisibility(View.GONE);
+                }
+
+            }
+        });
+        viewHolder.reportLayout.setVisibility(View.GONE);
+        viewHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewHolder.reportLayout.getVisibility() == View.GONE) {
+                    viewHolder.reportLayout.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.reportLayout.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+        viewHolder.txtReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewHolder.reportLayout.getVisibility() == View.VISIBLE) {
+                    myChannelFragment.setLoader(View.VISIBLE);
+                    Commands.removeChannel(channel, new OnJoinSuccess() {
+                        @Override
+                        public void OnResponse(boolean ok) {
+                            myChannelFragment.setLoader(View.GONE);
+                            if (ok) {
+                                remove(channel);
+                                notifyDataSetChanged();
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
         viewHolder.avatarImage = new ImageReceiver(v);
         viewHolder.avatarDrawable = new AvatarDrawable();
         viewHolder.avatarImage.setRoundRadius(AndroidUtilities.dp(26));
@@ -226,6 +271,10 @@ public class MyChannelsAdapter extends ArrayAdapter {
         TextView title;
         ImageReceiver avatarImage;
         AvatarDrawable avatarDrawable;
+        LinearLayout reportLayout;
+        TextView txtReport;
+        RelativeLayout backLayout;
+        ImageButton imgMore;
 
     }
 

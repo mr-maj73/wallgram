@@ -40,6 +40,8 @@
     <string name="titleDialogShowSugeest">شرایط سفارش دهنده</string>
     <string name="okDialogShowSugeest">تایید</string>
     <string name="noDialogShowSugeest">لغو</string>
+    <string name="successMessage">تغییرات به درستی ثبت گردید.</string>
+    <string name="reportMessage">گزارش تخلف</string>
 
 
 

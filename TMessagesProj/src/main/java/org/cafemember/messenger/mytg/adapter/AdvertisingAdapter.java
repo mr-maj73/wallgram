@@ -58,7 +58,7 @@ public class AdvertisingAdapter extends
 
 
         mainHolder.textPriceAdver.setText("" + channelAdv.price);
-        Log.i("mohammad", "11111111" + channelAdv.price);
+
         if (channelAdv.title != null && channelAdv.title.length() > 1) {
             mainHolder.textTitleAdv.setText(channelAdv.title);
         } else {
@@ -69,7 +69,7 @@ public class AdvertisingAdapter extends
         mainHolder.layConnectAdv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent telegram = new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/tefelgarddd"));
+                Intent telegram = new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/"+channelAdv.admin_link));
                 context.startActivity(telegram);
             }
         });

@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Commands;
@@ -134,6 +135,7 @@ public class AdvertisingDialog extends DialogFragment {
                     @Override
                     public void OnResponseReady(boolean error, JSONObject data, String message) {
                         if (!error) {
+                            Toast.makeText(getActivity(), getActivity().getResources().getText(R.string.successMessage), Toast.LENGTH_SHORT).show();
                             dismiss();
                         } else {
                             txtErrorDialog.setText(message);

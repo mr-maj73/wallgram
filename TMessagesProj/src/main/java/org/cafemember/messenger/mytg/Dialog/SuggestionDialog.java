@@ -94,11 +94,12 @@ public class SuggestionDialog extends DialogFragment {
                     @Override
                     public void OnResponseReady(boolean error, JSONObject data, String message) {
                         if (!error) {
-                            mySuggestAdsAdapter.removeItem(object,id);
+                            mySuggestAdsAdapter.removeItem(object,numberSuggest);
                             view.removeViewAt(numberSuggest);
                             dismiss();
+                            Toast.makeText(getActivity(), getActivity().getResources().getText(R.string.successMessage), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity(), "vdvfv", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
@@ -113,11 +114,12 @@ public class SuggestionDialog extends DialogFragment {
                     @Override
                     public void OnResponseReady(boolean error, JSONObject data, String message) {
                         if (!error) {
-                            mySuggestAdsAdapter.removeItem(object,id);
+                            mySuggestAdsAdapter.removeItem(object,numberSuggest);
                             view.removeViewAt(numberSuggest);
                             dismiss();
+                            Toast.makeText(getActivity(), getActivity().getResources().getText(R.string.successMessage), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity(), "vdvfv", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });

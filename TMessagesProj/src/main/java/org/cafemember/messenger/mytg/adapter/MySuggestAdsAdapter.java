@@ -236,7 +236,7 @@ public class MySuggestAdsAdapter extends ArrayAdapter
             js.put("adsUser", new JSONArray(list2));
             js.put("adsId", new JSONArray(list3));
             js.put("adsRule", new JSONArray(list4));
-        
+
 
         } catch (JSONException e) {
             e.printStackTrace();

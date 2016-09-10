@@ -1,13 +1,17 @@
 package org.cafemember.messenger.mytg.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
 import org.cafemember.messenger.AndroidUtilities;
 import org.cafemember.messenger.ImageReceiver;
 import org.cafemember.messenger.R;
@@ -43,7 +47,7 @@ public class ChannelsAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View v, ViewGroup parent) {
         final Channel channel = getItem(position);
-        ChannelViewHolder viewHolder;
+        final ChannelViewHolder viewHolder;
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
@@ -53,13 +57,26 @@ public class ChannelsAdapter extends ArrayAdapter {
             viewHolder.title = (TextView) v.findViewById(R.id.title);
             viewHolder.image = (ImageView) v.findViewById(R.id.image);
             viewHolder.join = (TextView) v.findViewById(R.id.join);
-             viewHolder.report = (Button)v.findViewById(R.id.report);
+            viewHolder.report = (Button) v.findViewById(R.id.report);
+            viewHolder.reportLayout = (LinearLayout) v.findViewById(R.id.reportLayout);
+            viewHolder.imgMore = (ImageButton) v.findViewById(R.id.imgMore);
+            viewHolder.backLayout = (RelativeLayout) v.findViewById(R.id.backLayout);
+            viewHolder.txtReport = (TextView) v.findViewById(R.id.txtReport);
             v.setTag(viewHolder);
         } else {
             viewHolder = (ChannelViewHolder) v.getTag();
         }
+        viewHolder.backLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (viewHolder.reportLayout.getVisibility() == View.VISIBLE) {
+                    viewHolder.reportLayout.setVisibility(View.GONE);
+                }
 
+            }
+        });
+        viewHolder.reportLayout.setVisibility(View.GONE);
         viewHolder.avatarImage = new ImageReceiver(v);
         viewHolder.avatarDrawable = new AvatarDrawable();
         viewHolder.avatarImage.setRoundRadius(AndroidUtilities.dp(26));
@@ -138,43 +155,34 @@ public class ChannelsAdapter extends ArrayAdapter {
                 }
             });
         }*/
-//        viewHolder.report.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//                builder.setTitle("گزارش کانال");
-//
-//// Set up the input
-//                final EditText input = new EditText(getContext());
-//                input.setHint("دلیل گزارش");
-//// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-////                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-//                builder.setView(input);
-//
-//// Set up the buttons
-//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        String m_Text = input.getText().toString();
-//                        Commands.report((int) channel.id, m_Text, new OnResponseReadyListener() {
-//                            @Override
-//                            public void OnResponseReady(boolean error, JSONObject data, String message) {
-//                                Toast.makeText(getContext(), error ? "خطا در گزارش کانال" : "کانال گزارش شد", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    }
-//                });
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//                builder.show();
-//
-//            }
-//        });
+        viewHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewHolder.reportLayout.getVisibility() == View.GONE) {
+                    viewHolder.reportLayout.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.reportLayout.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+        viewHolder.txtReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewHolder.reportLayout.getVisibility() == View.VISIBLE) {
+                    alertDialogReporter((int)channel.id,viewHolder.reportLayout);
+
+                }
+            }
+        });
+
+        viewHolder.reportLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewHolder.reportLayout.setVisibility(View.GONE);
+            }
+        });
         viewHolder.join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,9 +231,63 @@ public class ChannelsAdapter extends ArrayAdapter {
         ImageView image;
         TextView join;
         Button report;
+        LinearLayout reportLayout;
+        TextView txtReport;
+        RelativeLayout backLayout;
+        ImageButton imgMore;
         TextView title;
         ImageReceiver avatarImage;
         AvatarDrawable avatarDrawable;
+
+    }
+
+    private void alertDialogReporter(final int channel_id, final View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("گزارش کانال");
+
+        // Set up the input
+        final EditText input = new EditText(getContext());
+        input.setHint("دلیل گزارش");
+        input.setPadding(8,0,8,0);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        layoutParams.setMargins(20, 10, 20, 10);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+//                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        input.setLayoutParams(layoutParams);
+
+        LinearLayout layout = new LinearLayout(getContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(input);
+
+
+        builder.setView(layout);
+
+        // Set up the buttons
+        builder.setPositiveButton("ثبت", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String m_Text = input.getText().toString();
+                Commands.report( channel_id, m_Text, new OnResponseReadyListener() {
+                    @Override
+                    public void OnResponseReady(boolean error, JSONObject data, String message) {
+                        Toast.makeText(getContext(), error ? "خطا در گزارش کانال" : "کانال گزارش شد", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                view.setVisibility(View.GONE);
+            }
+        });
+        builder.setNegativeButton("لغو", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                view.setVisibility(View.GONE);
+            }
+        });
+
+        builder.show();
 
     }
 }
