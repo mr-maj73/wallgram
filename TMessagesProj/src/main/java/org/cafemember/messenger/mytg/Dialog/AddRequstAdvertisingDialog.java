@@ -18,6 +18,7 @@ import android.widget.Toast;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.CategoryChannel;
 import org.cafemember.messenger.mytg.Commands;
+import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.adapter.SpinnerAdapter;
 import org.cafemember.messenger.mytg.fragments.MyChannelFragment;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
@@ -99,6 +100,7 @@ public class AddRequstAdvertisingDialog extends DialogFragment {
             }
         });
 
+        FontManager.instance().setTypefaceImmediate(v);
 
         return v;
     }

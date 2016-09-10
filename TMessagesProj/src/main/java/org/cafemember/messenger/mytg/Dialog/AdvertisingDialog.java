@@ -4,6 +4,7 @@ package org.cafemember.messenger.mytg.Dialog;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Commands;
+import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.adapter.ConditionAdapter;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
 import org.json.JSONObject;
@@ -49,6 +51,7 @@ public class AdvertisingDialog extends DialogFragment {
     int i = 3;
 //    TextInputLayout layPrice;
     EditText edtPriceDialog;
+    TextInputLayout edtPriceWrapper;
     TextView txtErrorDialog;
     LinearLayout layMoreCondition;
     TextView txtSubmitDialog;
@@ -65,6 +68,8 @@ public class AdvertisingDialog extends DialogFragment {
         //   ((TextView)tv).setText("This is an instance of MyDialogFragment");
 //        layPrice = (TextInputLayout) v.findViewById(R.id.layPrice);
         edtPriceDialog = (EditText) v.findViewById(R.id.edtPriceDialog);
+        edtPriceWrapper= (TextInputLayout) v.findViewById(R.id.edtPriceWrapper);
+        edtPriceWrapper.setHint(getString(R.string.coin_count_hint));
         txtErrorDialog = (TextView) v.findViewById(R.id.txtErrorDialog);
         layMoreCondition = (LinearLayout) v.findViewById(R.id.layMoreCondition);
         txtSubmitDialog = (TextView) v.findViewById(R.id.txtSubmitDialog);
@@ -147,7 +152,7 @@ public class AdvertisingDialog extends DialogFragment {
 
         });
 
-
+        FontManager.instance().setTypeface(v);
         return v;
     }
 }

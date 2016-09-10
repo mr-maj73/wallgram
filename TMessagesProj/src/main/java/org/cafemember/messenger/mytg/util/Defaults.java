@@ -244,7 +244,7 @@ public class Defaults {
             TLRPC.Chat chat = MessagesController.getInstance().getChat((int) currentChannel.id);
             if(chat != null){
                 currentChannel.title = chat.title;
-                currentChannel.id = chat.id;
+//                currentChannel.id = chat.id;
                 if(chat.photo != null){
                     currentChannel.photo = chat.photo.photo_small;
                 }
@@ -275,7 +275,7 @@ public class Defaults {
                             if (!res.chats.isEmpty()) {
                                 TLRPC.Chat chat = res.chats.get(0);
                                 currentChannel.title = chat.title;
-                                currentChannel.id = chat.id;
+//                                currentChannel.id = chat.id;
                                 if(chat.photo != null){
                                     currentChannel.photo = chat.photo.photo_small;
                                 }

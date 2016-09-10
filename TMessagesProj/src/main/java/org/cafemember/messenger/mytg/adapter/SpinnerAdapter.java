@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.CategoryChannel;
+import org.cafemember.messenger.mytg.FontManager;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,8 @@ public class SpinnerAdapter extends BaseAdapter {
         CategoryChannel cat = cats.get(i);
         TextView names = (TextView) view.findViewById(R.id.textView);
         names.setText(cat.name);
+        FontManager.instance().setTypefaceImmediate(view);
+
         return view;
     }
 }

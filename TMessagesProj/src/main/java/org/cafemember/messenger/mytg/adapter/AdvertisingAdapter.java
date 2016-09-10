@@ -19,6 +19,7 @@ import android.widget.TextView;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Channel;
 import org.cafemember.messenger.mytg.ChannelAdvertising;
+import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.fragments.AdvertisingFragment;
 
 import java.util.ArrayList;
@@ -120,6 +121,7 @@ public class AdvertisingAdapter extends
             this.laySubmitAdv = (LinearLayout) view.findViewById(R.id.laySubmitAdv);
             this.layConnectAdv = (LinearLayout) view.findViewById(R.id.layConnectAdv);
             this.advertisingLayoutSliding = (CardView) view.findViewById(R.id.advertisingLayoutSliding);
+            FontManager.instance().setTypefaceImmediate(view);
 
 
         }
