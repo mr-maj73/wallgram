@@ -2,6 +2,11 @@ package org.cafemember.messenger.mytg.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Parcelable;
 import android.util.Log;
 
 import org.cafemember.messenger.MessagesController;
@@ -19,6 +24,7 @@ import org.cafemember.tgnet.RequestDelegate;
 import org.cafemember.tgnet.TLObject;
 import org.cafemember.tgnet.TLRPC;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -334,5 +340,49 @@ public class Defaults {
         }
 
         return myDialogs;
+    }
+
+    public  void loadPhoto(TLRPC.InputFileLocation inputFileLocation, final Handler handler) {
+        loadPhoto(inputFileLocation.id, inputFileLocation.volume_id, inputFileLocation.secret, inputFileLocation.local_id, handler);
+    }
+    public  void loadPhoto(long dc_id, long volume_id, long secret, int local_id, final Handler handler) {
+        if (volume_id == 0 && local_id == 0) {
+            handler.sendMessage(new Message());
+            return;
+        }
+        TLRPC.InputFileLocation tL_inputFileLocation = new TLRPC.TL_inputFileLocation();
+        tL_inputFileLocation.id =  dc_id;
+        tL_inputFileLocation.volume_id = volume_id;
+        tL_inputFileLocation.secret = secret;
+        tL_inputFileLocation.local_id = local_id;
+        TLRPC.TL_upload_getFile tL_upload_getFile = new TLRPC.TL_upload_getFile();
+        tL_upload_getFile.location = tL_inputFileLocation;
+        tL_upload_getFile.offset = 0;
+        tL_upload_getFile.limit = 0;
+        ConnectionsManager.getInstance().sendRequest(tL_upload_getFile, new RequestDelegate() {
+            @Override
+            public void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                if (tL_error == null) {
+                    TLRPC.TL_upload_file tL_upload_file = (TLRPC.TL_upload_file) tLObject;
+                    tL_upload_file.disableFree = true;
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    tL_upload_file.bytes.position(0);
+                    do {
+                        try {
+                            byteArrayOutputStream.write(tL_upload_file.bytes.readData(tL_upload_file.bytes.limit(), true));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } while (byteArrayOutputStream.size() < tL_upload_file.bytes.limit());
+                    Parcelable decodeByteArray = BitmapFactory.decodeByteArray(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.toByteArray().length);
+                    Message message = new Message();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("bmp", decodeByteArray);
+//                    bundle.putInt("currentIndex", this.f529a);
+                    message.setData(bundle);
+                    handler.sendMessage(message);
+                }
+            }
+        });
     }
 }

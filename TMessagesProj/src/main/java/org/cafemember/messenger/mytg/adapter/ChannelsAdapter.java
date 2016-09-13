@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import org.cafemember.messenger.mytg.Commands;
 import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.fragments.ChannelsFragment;
 import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
+import org.cafemember.messenger.mytg.util.Defaults;
 import org.cafemember.tgnet.TLRPC;
 import org.cafemember.ui.Components.AvatarDrawable;
 import org.cafemember.ui.DialogsActivity;
@@ -74,8 +77,17 @@ public class ChannelsAdapter extends ArrayAdapter {
         } else {
 //            Log.e("MY",channel.name+"Has NOT Photo");
             if (channel.photo != null) {
+                final ChannelViewHolder cvh = viewHolder;
+                Defaults.getInstance().loadPhoto((long)channel.photo.dc_id, channel.photo.volume_id,channel.photo.secret,channel.photo.local_id, new Handler(){
+                    @Override
+                    public void handleMessage(Message message) {
+                        if (message.getData() != null && message.getData().getParcelable("bmp") != null) {
+                            cvh.image.setImageBitmap((Bitmap) message.getData().getParcelable("bmp"));
+                        }
+                    }
+                });
 //                Log.e("MY",channel.name+"Has Online");
-                TLRPC.FileLocation photo = null;
+                /*TLRPC.FileLocation photo = null;
                 photo = channel.photo;
                 viewHolder.avatarImage.setImage(photo, "50_50", viewHolder.avatarDrawable, null, false);
                 bitmap = viewHolder.avatarImage.getBitmap();
@@ -110,7 +122,7 @@ public class ChannelsAdapter extends ArrayAdapter {
                         }
                     });
                     t.start();
-                }
+                }*/
             }
 
         }
