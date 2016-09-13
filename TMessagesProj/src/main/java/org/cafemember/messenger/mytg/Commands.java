@@ -698,7 +698,7 @@ public class Commands {
     }
 
     public static void addMyChannel(final Channel channel, final OnResponseReadyListener onJoinSuccess) {
-        int channelId = (int) channel.id;
+        int channelId = (int) channel.inputChannel.channel_id;
 
         String body;
         body = "{\"title\":\"" + (channel.title == null ? "" : channel.title) + "\"}";
