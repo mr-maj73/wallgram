@@ -180,6 +180,8 @@ public class MyChannelFragment extends Fragment implements Refrashable, SwipeRef
                             e.printStackTrace();
                         }
                     } else {
+                        adapter.clear();
+                        adapter.notifyDataSetChanged();
                         errorHolder.setVisibility(View.VISIBLE);
                     }
                     if(swiper.isRefreshing()){
