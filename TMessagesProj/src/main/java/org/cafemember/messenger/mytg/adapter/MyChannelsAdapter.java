@@ -1,18 +1,26 @@
 package org.cafemember.messenger.mytg.adapter;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.*;
 
 import org.cafemember.messenger.AndroidUtilities;
@@ -77,7 +85,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
         } else {
             viewHolder = (MyChannelViewHolder) v.getTag();
         }
-
+        viewHolder.reportLayout.setVisibility(View.GONE);
         viewHolder.backLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +96,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
 
             }
         });
-        viewHolder.reportLayout.setVisibility(View.GONE);
+
         viewHolder.imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,53 +202,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
         viewHolder.selectMemebers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                myChannelFragment.setLoader(View.VISIBLE);
-//                Commands.removeChannel(channel, new OnJoinSuccess() {
-//                    @Override
-//                    public void OnResponse(boolean ok) {
-//                        myChannelFragment.setLoader(View.GONE);
-//                        if(ok){
-//                            remove(channel);
-//                            notifyDataSetChanged();
-//                        }
-//                    }
-//                });
-                Log.d("MyChannel", "OnClick Triggerd");
-
-//                Log.d("COMMAND","AddChannel Triggerd");
-                final int channelId = (int) channel.id;
-                AlertDialog.Builder builder;
-                builder = new AlertDialog.Builder(getContext());
-
-                builder.setTitle(LocaleController.getString("MemberBegirTitle", R.string.MemberBegirTitle));
-
-                            /*builder.setItems(Defaults.MEMBERS_COUNT , new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Commands.addChannel(chat,Integer.parseInt(Defaults.MEMBERS_COUNT[which]));
-                                }
-                            });*/
-                ReserveAdapter reserveAdapter = new ReserveAdapter(getContext(), R.layout.adapter_buy_coin, channel);
-                reserveAdapter.setOnClickListener(new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-//                        Log.d("COMMAND","OnClick Triggerd 2");
-                        final int count = Integer.parseInt(Defaults.MEMBERS_COUNT[which]);
-                        Bitmap b = null;
-                        b = channel.getBitMap();
-                        myChannelFragment.setLoader(View.VISIBLE);
-                        Commands.addChannel(channel, count, b, dialogsActivity, myChannelFragment);
-                        if (alertDialog != null && alertDialog.isShowing()) {
-                            alertDialog.dismiss();
-                        }
-                    }
-                });
-                builder.setAdapter(reserveAdapter, null);
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-                builder.setCancelable(true);
-                alertDialog = builder.create();
-                dialogsActivity.showDialog(alertDialog);
-
+                showDialogGetmember(getContext(),channel);
 
             }
         });
@@ -283,4 +245,41 @@ public class MyChannelsAdapter extends ArrayAdapter {
         newFragment.show(myChannelFragment.getFragmentManager(), "dialog");
 
     }
+
+    private void showDialogGetmember(Context context, final Channel channel){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_mychannel_getmember);
+
+
+        TextView title = (TextView) dialog.findViewById(R.id.titleDialog);
+        TextView errorMessage = (TextView) dialog.findViewById(R.id.errorMessage);
+        final ListView listDialog = (ListView) dialog.findViewById(R.id.listDialog);
+        final LinearLayout errorLay = (LinearLayout) dialog.findViewById(R.id.errorLay);
+
+        errorLay.setVisibility(View.INVISIBLE);
+        title.setText(R.string.MemberBegirTitle);
+        ReserveAdapter reserveAdapter = new ReserveAdapter(getContext(), R.layout.adapter_buy_coin, channel);
+        reserveAdapter.setOnClickListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                        Log.d("COMMAND","OnClick Triggerd 2");
+                final int count = Integer.parseInt(Defaults.MEMBERS_COUNT[which]);
+                Bitmap b = null;
+                b = channel.getBitMap();
+                myChannelFragment.setLoader(View.VISIBLE);
+                Commands.addChannel(channel, count, b, dialogsActivity, myChannelFragment);
+                if (alertDialog != null && alertDialog.isShowing()) {
+                    alertDialog.dismiss();
+                }
+            }
+        });
+
+        listDialog.setAdapter(reserveAdapter);
+        dialog.show();
+
+
+    }
+
 }

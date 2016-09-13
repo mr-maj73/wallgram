@@ -43,6 +43,11 @@
     <string name="noDialogShowSugeest">لغو</string>
     <string name="successMessage">تغییرات به درستی ثبت گردید.</string>
     <string name="reportMessage">گزارش تخلف</string>
+    <string name="tabOrdersAdvertising">سفارش اگهی</string>
+    <string name="tabOrdersMemberShip">سفارش عضویت</string>
+    <string name="orderpicker">تعداد سفارش :</string>
+    <string name="coinDeal">عضو شده :</string>
+    <string name="showCondition">مشاهده شرایط</string>
 
 
 
@@ -69,7 +74,7 @@
     <string name="ViewBegirTitle">تعداد بازدید خود را انتخاب کنید</string>
     <string name="ViewsCountAlert">How many views do you want?</string>
     <string name="MemberBegir">عضو بگیر</string>
-    <string name="MemberBegirTitle">تعداد عضویت خود را انتخاب کنید</string>
+    <string name="MemberBegirTitle">سفارش عضویت</string>
     <string name="MembersCountAlert">How many members do you want?</string>
 
     <string name="JoinChannel">Join</string>

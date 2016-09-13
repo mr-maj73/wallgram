@@ -25,6 +25,7 @@ public class CoinsAdapter extends ArrayAdapter {
 
 
     private JSONArray coins;
+
     public CoinsAdapter(Context context, int resource, JSONArray objects) {
         super(context, resource);
         coins = objects;
@@ -33,27 +34,25 @@ public class CoinsAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View v, ViewGroup parent) {
         final JSONObject coin = getItem(position);
-        CoinViewHolder viewHolder ;
+        CoinViewHolder viewHolder;
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.adapter_buy_coin, parent, false);
+            v = vi.inflate(R.layout.adapter_reserve_coin, parent, false);
             viewHolder = new CoinViewHolder();
-            viewHolder.description = (TextView)v.findViewById(R.id.description);
-            viewHolder.off = (TextView)v.findViewById(R.id.off);
-            viewHolder.image = (ImageView)v.findViewById(R.id.image);
-            viewHolder.coin = (ImageView)v.findViewById(R.id.coinIcon);
-            viewHolder.count = (TextView) v.findViewById(R.id.count);
-            viewHolder.cardView = (CardView) v.findViewById(R.id.card);
+            viewHolder.priceNumber = (TextView) v.findViewById(R.id.description);
+            viewHolder.coinNumber = (Button) v.findViewById(R.id.btnBy);
+//            viewHolder.image = (ImageView) v.findViewById(R.id.image);
+//            viewHolder.coin = (ImageView) v.findViewById(R.id.coinIcon);
+//            viewHolder.count = (TextView) v.findViewById(R.id.count);
+//            viewHolder.cardView = (CardView) v.findViewById(R.id.card);
             v.setTag(viewHolder);
-        }
-
-        else {
-            viewHolder = (CoinViewHolder)v.getTag();
+        } else {
+            viewHolder = (CoinViewHolder) v.getTag();
         }
         try {
-            final String price = coin.getString("description");
-            final String off = coin.getString("price");
+            final String coinDescription = coin.getString("description");
+            final String priceDescription = coin.getString("price");
             /*if(type.equals("1")){
                 viewHolder.image.setImageResource(R.drawable.ic_profile_blue_64);
             }
@@ -62,26 +61,24 @@ public class CoinsAdapter extends ArrayAdapter {
             }*/
             final String id = coin.getString("sku");
             String description = coin.getString("count");
-            viewHolder.description.setText(price+" تومان");
-            viewHolder.off.setText(off+" تومان");
-            viewHolder.count.setText(description+" سکه");
-            int offPrice = Integer.parseInt(off);
-            if(offPrice == Integer.parseInt(price)){
-                viewHolder.description.setVisibility(View.GONE);
-            }
-            else {
-                viewHolder.description.setVisibility(View.VISIBLE);
-
-            }
-
-            if(offPrice >= 100000){
-                viewHolder.cardView.setCardBackgroundColor(Color.YELLOW);
-//                viewHolder.coin.setImageResource(R.drawable.coin_golden);
-            }
-            else {
-//                viewHolder.coin.setImageResource(R.drawable.coin_green);
-                viewHolder.cardView.setCardBackgroundColor(Color.WHITE);
-            }
+ //           viewHolder.description.setText(priceDescription + " تومان");
+            viewHolder.priceNumber.setText(priceDescription + " تومان");
+            viewHolder.coinNumber.setText(coinDescription + "  خرید  ");
+//            int offPrice = Integer.parseInt(off);
+//            if (offPrice == Integer.parseInt(price)) {
+//                viewHolder.description.setVisibility(View.GONE);
+//            } else {
+//                viewHolder.description.setVisibility(View.VISIBLE);
+//
+//            }
+//
+//            if (offPrice >= 100000) {
+//                viewHolder.cardView.setCardBackgroundColor(Color.YELLOW);
+////                viewHolder.coin.setImageResource(R.drawable.coin_golden);
+//            } else {
+////                viewHolder.coin.setImageResource(R.drawable.coin_green);
+//                viewHolder.cardView.setCardBackgroundColor(Color.WHITE);
+//            }
 /*
             viewHolder.count.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,7 +87,7 @@ public class CoinsAdapter extends ArrayAdapter {
                 }
             });
 */
-        }catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -116,11 +113,13 @@ public class CoinsAdapter extends ArrayAdapter {
 
     public class CoinViewHolder {
 
-        TextView description;
-        TextView off;
-        ImageView image ;
-        ImageView coin ;
-        TextView count;
-        CardView cardView;
+        //        TextView description;
+//        TextView off;
+//        ImageView image ;
+//        ImageView coin ;
+//        TextView count;
+//        CardView cardView;
+        Button coinNumber;
+        TextView  priceNumber;
     }
 }

@@ -117,4 +117,23 @@
 
 
 
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <!--<item name="colorControlHighlight">@color/indigo</item>-->
+        <item name="colorButtonNormal">@color/fontPrice</item>
+        <item name="android:textColor">#ffffff</item>
+        <!--<item name="android:buttonStyle">?android:attr/borderlessButtonStyle</item>-->
+    </style>
+    <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
+        <!--<item name="tabBackground">@drawable/tab_background</item>-->
+        <item name="tabIndicatorColor">@color/fontPrice</item>
+        <item name="tabTextAppearance">@style/MyCustomTabText</item>
+        <item name="tabSelectedTextColor">@color/fontPrice</item>
+        <!--<item name="tabSelectedTextSize">22sp</item>-->
+        <item name="tabIndicatorHeight">2dp</item>
+    </style>
+    <style name="MyCustomTabText" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/hint</item>
+    </style>
+
 </resources>
