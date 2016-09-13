@@ -5,50 +5,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/holder">
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardBackgroundColor="@android:color/background_light"
-        android:padding="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="3dp">
 
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
            android:gravity="center_vertical">
-            <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginTop="3dp"
-                    android:contextClickable="true"
-                    android:padding="6dp"
-                    android:src="@drawable/group_blue_64" />
-            <TextView
-                android:id="@+id/description"
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:lines="1"
-                android:padding="0dp"
-                android:text="1k follower"
-                android:textColor="#000000"
-                android:textSize="20sp"/>
+                android:text="New Button"
+                android:id="@+id/btnBy"
+                android:drawableLeft="@drawable/coin_white"
+                android:gravity="center"
+                android:theme="@style/MyButton"
+                android:paddingRight="8dp"
+                android:minWidth="180dp"
+                android:textColor="#ffffff"
+                android:paddingTop="0dp"
+                android:paddingLeft="8dp"
+                android:paddingBottom="0dp"
 
-
+                />
 
 
         </LinearLayout>
@@ -59,23 +49,24 @@
                 android:gravity="center_vertical|right" >
 
             <TextView
-                    android:id="@+id/txtt_buy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="خرید"
-                    android:layout_marginRight="5dp"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-
-            />
-            <ImageView android:layout_width="50dp"
-                       android:layout_height="50dp"
-                         android:src="@drawable/coin_blue_64"
-
-            />
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:padding="0dp"
+                android:text="1k follower"
+                android:textColor="@color/hint"
+                android:textSize="20sp"
+                android:layout_marginRight="10dp" />
         </LinearLayout>
 
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar3" />
+
+
 </LinearLayout>

@@ -72,7 +72,7 @@ public class CoinFragment extends Fragment implements Refrashable {
                     try {
                         data = data.getJSONObject("data");
                         int len = 0;
-                        joinAdapter = new CoinsAdapter(ApplicationLoader.applicationContext,R.layout.adapter_buy_coin,data.getJSONArray("joinCoins"));
+                        joinAdapter = new CoinsAdapter(ApplicationLoader.applicationContext,R.layout.adapter_reserve_coin ,data.getJSONArray("joinCoins"));
                         listViewJoin.setAdapter(joinAdapter);
                         listViewJoin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
