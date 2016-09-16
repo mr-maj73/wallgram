@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="8dp">
 
     <TextView
         android:id="@+id/textView2"
@@ -15,12 +16,14 @@
         android:text="@string/titleDialogAdv"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/titleDialogColor"
-        android:textSize="24dp" />
+        android:textSize="@dimen/dialog_title_font_size"
+        android:layout_marginRight="6dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/help">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,23 +39,11 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="4dp"
                 android:paddingTop="4dp"
-                android:text="@string/messageDialogAdv1"
+                android:text="@string/appHelp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/messageDialogColor"
-                android:textSize="13sp" />
+                android:textSize="@dimen/dialog_body_font_size" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="4dp"
-                android:paddingTop="4dp"
-                android:text="@string/messageDialogAdv2"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/messageDialogColor"
-                android:textSize="13sp" />
         </LinearLayout>
 
         <ImageView
@@ -92,7 +83,7 @@
             android:text="@string/moreOptionDialogAdv"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/messageDialogColor"
-            android:textSize="18sp" />
+            android:textSize="@dimen/dialog_body_font_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -114,7 +105,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="@string/coin_count_hint"
-            android:textSize="16sp"
+            android:textSize="@dimen/dialog_body_font_size"
             android:gravity="right" />
 </android.support.design.widget.TextInputLayout>
 
@@ -133,33 +124,6 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:paddingLeft="8dp"
-                android:paddingRight="4dp"
-                android:text="@string/messageDialogAdv3"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/titleDialogColor"
-                android:textSize="13sp" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="top"
-                android:src="@drawable/warning_gray" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
@@ -173,7 +137,8 @@
                 android:paddingRight="15dp"
                 android:text="@string/buttonDialogAdv"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/messageDialogColor" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dialog_button_font_size" />
 
             <TextView
                 android:id="@+id/txtErrorDialog"

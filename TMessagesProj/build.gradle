@@ -25,11 +25,16 @@ dependencies {
 }
 
 android {
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
+    }
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
 
     useLibrary 'org.apache.http.legacy'
-    defaultConfig.applicationId = "ir.atitec.atigram"
+//    defaultConfig.applicationId = "ir.atitec.atigram"
+    defaultConfig.applicationId = "ir.masroid.wallgram"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -79,7 +84,6 @@ android {
     }
 
 //    defaultConfig.versionCode = 787
-    defaultConfig.versionCode = 7000
 
     sourceSets.main {
         jniLibs.srcDir 'libs'
@@ -124,7 +128,7 @@ android {
 //    }
 
     applicationVariants.all { variant ->
-        def abiVersion = 3
+        def abiVersion = 0
         //variant.productFlavors.get(0).versionCode
         variant.mergedFlavor.versionCode = defaultConfig.versionCode * 10 + abiVersion;
     }
@@ -132,8 +136,9 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 23
+        versionCode  7002
 //        versionName "3.8.1"
-        versionName "1.0 Beta"
+        versionName "1.01 Beta"
         multiDexEnabled true
     }
 }

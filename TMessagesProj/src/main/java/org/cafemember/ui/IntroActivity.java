@@ -31,6 +31,7 @@ import org.cafemember.messenger.AndroidUtilities;
 import org.cafemember.messenger.BuildVars;
 import org.cafemember.messenger.LocaleController;
 import org.cafemember.messenger.R;
+import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.tgnet.ConnectionsManager;
 import org.cafemember.ui.ActionBar.Theme;
 
@@ -69,7 +70,7 @@ public class IntroActivity extends Activity {
                     R.drawable.intro4,
                     R.drawable.intro3,
                     R.drawable.intro2,
-                    R.drawable.intro1
+                    R.drawable.logo
             };
             titles = new int[]{
                     R.string.Page7Title,
@@ -91,7 +92,7 @@ public class IntroActivity extends Activity {
             };
         } else {
             icons = new int[]{
-                    R.drawable.intro1,
+                    R.drawable.logo,
                     R.drawable.intro2,
                     R.drawable.intro3,
                     R.drawable.intro4,
@@ -121,6 +122,7 @@ public class IntroActivity extends Activity {
         viewPager = (ViewPager) findViewById(R.id.intro_view_pager);
         TextView startMessagingButton = (TextView) findViewById(R.id.start_messaging_button);
         startMessagingButton.setText(LocaleController.getString("StartMessaging", R.string.StartMessaging).toUpperCase());
+        startMessagingButton.setTypeface(FontManager.instance().getTypeface());
         if (Build.VERSION.SDK_INT >= 21) {
             StateListAnimator animator = new StateListAnimator();
             animator.addState(new int[]{android.R.attr.state_pressed}, ObjectAnimator.ofFloat(startMessagingButton, "translationZ", AndroidUtilities.dp(2), AndroidUtilities.dp(4)).setDuration(200));
@@ -275,6 +277,7 @@ public class IntroActivity extends Activity {
             headerTextView.setText(getString(titles[position]));
             messageTextView.setText(AndroidUtilities.replaceTags(getString(messages[position])));
 
+            FontManager.instance().setTypefaceImmediate(view);
             return view;
         }
 
@@ -290,7 +293,7 @@ public class IntroActivity extends Activity {
             for (int a = 0; a < count; a++) {
                 View child = bottomPages.getChildAt(a);
                 if (a == position) {
-                    child.setBackgroundColor(0xff2ca5e0);
+                    child.setBackgroundColor(0xfff9690e);
                 } else {
                     child.setBackgroundColor(0xffbbbbbb);
                 }

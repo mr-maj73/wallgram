@@ -349,7 +349,7 @@ public class LaunchActivity extends AppCompatActivity implements ActionBarLayout
                     startActivity(intent);
                     drawerLayoutContainer.closeDrawer(false);
                 }
-                else if (position == 10) {
+                else if (position == 2) {
 
                     try {
                         MySuggestAds his = new MySuggestAds();
@@ -359,7 +359,7 @@ public class LaunchActivity extends AppCompatActivity implements ActionBarLayout
                     }
                     drawerLayoutContainer.closeDrawer(false);
                 }
-                else if (position == 2) {
+                else if (position == 10) {
 
                     Intent intent = new Intent(Intent.ACTION_EDIT);
                     intent.setData(Uri.parse("bazaar://details?id=" + PACKAGE_NAME));
@@ -367,7 +367,7 @@ public class LaunchActivity extends AppCompatActivity implements ActionBarLayout
                     startActivity(intent);
                     drawerLayoutContainer.closeDrawer(false);
                 }
-                else if (position == 4) {
+                else if (position == 3) {
                     try {
                         HistoryActivity his = new HistoryActivity();
                         presentFragment(his);
@@ -377,8 +377,8 @@ public class LaunchActivity extends AppCompatActivity implements ActionBarLayout
                     drawerLayoutContainer.closeDrawer(false);
                 }
 
-                else if (position == 3) {
-                    Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://telegram.me/tefelgarddd"));
+                else if (position == 4) {
+                    Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://telegram.me/my_tgchannel"));
 
                     startActivity(telegram);
 

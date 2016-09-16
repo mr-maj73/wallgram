@@ -41,9 +41,11 @@ public class Theme {
 //    public static final int ACTION_BAR_MAIN_AVATAR_COLOR = 0xff5085b1;
     public static final int ACTION_BAR_MAIN_AVATAR_COLOR = 0xfff9690e;
     public static final int ACTION_BAR_ACTION_MODE_TEXT_COLOR = 0xff737373;
-    public static final int ACTION_BAR_SELECTOR_COLOR = 0xff406d94;
+//    public static final int ACTION_BAR_SELECTOR_COLOR = 0xff406d94;
+    public static final int ACTION_BAR_SELECTOR_COLOR = 0xfff9690e;
 
-    public static final int INPUT_FIELD_SELECTOR_COLOR = 0xffd6d6d6;
+//    public static final int INPUT_FIELD_SELECTOR_COLOR = 0xffd6d6d6;
+    public static final int INPUT_FIELD_SELECTOR_COLOR = 0xfff9690e;
     public static final int ACTION_BAR_PICKER_SELECTOR_COLOR = 0xff3d3d3d;
     public static final int ACTION_BAR_WHITE_SELECTOR_COLOR = 0x40ffffff;
     public static final int ACTION_BAR_AUDIO_SELECTOR_COLOR = 0x2f000000;

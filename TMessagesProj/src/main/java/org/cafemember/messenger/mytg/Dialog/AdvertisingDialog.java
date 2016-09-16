@@ -13,10 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.cafemember.messenger.LocaleController;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Commands;
 import org.cafemember.messenger.mytg.FontManager;
@@ -74,6 +78,16 @@ public class AdvertisingDialog extends DialogFragment {
         txtSubmitDialog = (TextView) v.findViewById(R.id.txtSubmitDialog);
         listCondition = (RecyclerView) v.findViewById(R.id.listCondition);
 
+        Animation myBlinkAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.blink);
+        View help = v.findViewById(R.id.help);
+        help.startAnimation(myBlinkAnimation);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = HelpDialog.newInstance(LocaleController.getString("suggestHelp",R.string.suggestHelp),LocaleController.getString("suggestHelpTitle",R.string.suggestHelpTitle));
+                newFragment.show(getFragmentManager(), "help");
+            }
+        });
         condition.add("");
         condition.add("");
         condition.add("");
@@ -127,11 +141,11 @@ public class AdvertisingDialog extends DialogFragment {
                         if (i == 0) {
                             cond = list.get(i);
                         } else {
-                            cond = cond + "$$$" + list.get(i);
+                            cond = cond + "@@@" + list.get(i);
                         }
 
                     }
-                    Log.i("mohammad", cond);
+//                    Log.i("mohammad", cond);
 
                 }
 
@@ -139,6 +153,7 @@ public class AdvertisingDialog extends DialogFragment {
                     @Override
                     public void OnResponseReady(boolean error, JSONObject data, String message) {
                         if (!error) {
+                            Toast.makeText(getActivity(), getActivity().getResources().getText(R.string.successMessage), Toast.LENGTH_SHORT).show();
                             dismiss();
                         } else {
                             txtErrorDialog.setText(message);

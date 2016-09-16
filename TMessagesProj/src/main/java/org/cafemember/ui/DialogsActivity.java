@@ -331,14 +331,15 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     @Override
     public View createView(final Context context) {
         Commands.checkChannelsTrigger(null, this);
-        int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        Commands.checkVersion(this);
+        /*int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         if( today != Defaults.getInstance().getLastDay()){
             Defaults.getInstance().setLastDay(today);
             AlertDialog.Builder builder = null;
-            /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            *//*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
                 builder = new AlertDialog.Builder(context, R.style.MyDialog);
             }
-            else {*/
+            else {*//*
                 builder = new AlertDialog.Builder(context);
 //            }
 
@@ -348,7 +349,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             builder.setPositiveButton("تایید",null);
             showDialog(builder.create());
 
-        }
+        }*/
         searching = false;
         searchWas = false;
 

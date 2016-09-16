@@ -1,41 +1,34 @@
 package org.cafemember.messenger.mytg.adapter;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.*;
 
 import org.cafemember.messenger.AndroidUtilities;
 import org.cafemember.messenger.ImageReceiver;
-import org.cafemember.messenger.LocaleController;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.Channel;
 import org.cafemember.messenger.mytg.Commands;
 import org.cafemember.messenger.mytg.Dialog.AddRequstAdvertisingDialog;
-import org.cafemember.messenger.mytg.Dialog.AdvertisingDialog;
 import org.cafemember.messenger.mytg.FontManager;
 import org.cafemember.messenger.mytg.fragments.MyChannelFragment;
 import org.cafemember.messenger.mytg.listeners.OnJoinSuccess;
-import org.cafemember.messenger.mytg.listeners.OnResponseReadyListener;
 import org.cafemember.messenger.mytg.util.Defaults;
 import org.cafemember.tgnet.TLRPC;
 import org.cafemember.ui.Components.AvatarDrawable;
 import org.cafemember.ui.DialogsActivity;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Masoud on 6/2/2016.
@@ -58,7 +51,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View v, ViewGroup parent) {
         final Channel channel = getItem(position);
-        MyChannelViewHolder viewHolder;
+        final MyChannelViewHolder viewHolder;
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
@@ -69,12 +62,57 @@ public class MyChannelsAdapter extends ArrayAdapter {
             viewHolder.image = (ImageView) v.findViewById(R.id.image);
             viewHolder.add = (Button) v.findViewById(R.id.reserve);
             viewHolder.selectMemebers = (Button) v.findViewById(R.id.selectMemebers);
+            viewHolder.reportLayout = (LinearLayout) v.findViewById(R.id.reportLayout);
+            viewHolder.imgMore = (ImageButton) v.findViewById(R.id.imgMore);
+            viewHolder.backLayout = (RelativeLayout) v.findViewById(R.id.backLayout);
+            viewHolder.txtReport = (TextView) v.findViewById(R.id.txtReport);
             v.setTag(viewHolder);
         } else {
             viewHolder = (MyChannelViewHolder) v.getTag();
         }
+        viewHolder.reportLayout.setVisibility(View.GONE);
+        viewHolder.backLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (viewHolder.reportLayout.getVisibility() == View.VISIBLE) {
+                    viewHolder.reportLayout.setVisibility(View.GONE);
+                }
+
+            }
+        });
+
+        viewHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewHolder.reportLayout.getVisibility() == View.GONE) {
+                    viewHolder.reportLayout.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.reportLayout.setVisibility(View.GONE);
+                }
+            }
+        });
 
 
+        viewHolder.txtReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewHolder.reportLayout.getVisibility() == View.VISIBLE) {
+                    myChannelFragment.setLoader(View.VISIBLE);
+                    Commands.removeChannel(channel, new OnJoinSuccess() {
+                        @Override
+                        public void OnResponse(boolean ok) {
+                            myChannelFragment.setLoader(View.GONE);
+                            if (ok) {
+                                remove(channel);
+                                notifyDataSetChanged();
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
         viewHolder.avatarImage = new ImageReceiver(v);
         viewHolder.avatarDrawable = new AvatarDrawable();
         viewHolder.avatarImage.setRoundRadius(AndroidUtilities.dp(26));
@@ -149,53 +187,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
         viewHolder.selectMemebers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                myChannelFragment.setLoader(View.VISIBLE);
-//                Commands.removeChannel(channel, new OnJoinSuccess() {
-//                    @Override
-//                    public void OnResponse(boolean ok) {
-//                        myChannelFragment.setLoader(View.GONE);
-//                        if(ok){
-//                            remove(channel);
-//                            notifyDataSetChanged();
-//                        }
-//                    }
-//                });
-                Log.d("MyChannel", "OnClick Triggerd");
-
-//                Log.d("COMMAND","AddChannel Triggerd");
-                final int channelId = (int) channel.id;
-                AlertDialog.Builder builder;
-                builder = new AlertDialog.Builder(getContext());
-
-                builder.setTitle(LocaleController.getString("MemberBegirTitle", R.string.MemberBegirTitle));
-
-                            /*builder.setItems(Defaults.MEMBERS_COUNT , new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Commands.addChannel(chat,Integer.parseInt(Defaults.MEMBERS_COUNT[which]));
-                                }
-                            });*/
-                ReserveAdapter reserveAdapter = new ReserveAdapter(getContext(), R.layout.adapter_buy_coin, channel);
-                reserveAdapter.setOnClickListener(new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-//                        Log.d("COMMAND","OnClick Triggerd 2");
-                        final int count = Integer.parseInt(Defaults.MEMBERS_COUNT[which]);
-                        Bitmap b = null;
-                        b = channel.getBitMap();
-                        myChannelFragment.setLoader(View.VISIBLE);
-                        Commands.addChannel(channel, count, b, dialogsActivity, myChannelFragment);
-                        if (alertDialog != null && alertDialog.isShowing()) {
-                            alertDialog.dismiss();
-                        }
-                    }
-                });
-                builder.setAdapter(reserveAdapter, null);
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-                builder.setCancelable(true);
-                alertDialog = builder.create();
-                dialogsActivity.showDialog(alertDialog);
-
+                showDialogGetmember(getContext(),channel);
 
             }
         });
@@ -204,7 +196,7 @@ public class MyChannelsAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
 
-                showDialogAddMember(channel.id);
+                showDialogAddAds(channel.id);
             }
         });
         FontManager.instance().setTypefaceImmediate(v);
@@ -226,12 +218,53 @@ public class MyChannelsAdapter extends ArrayAdapter {
         TextView title;
         ImageReceiver avatarImage;
         AvatarDrawable avatarDrawable;
+        LinearLayout reportLayout;
+        TextView txtReport;
+        RelativeLayout backLayout;
+        ImageButton imgMore;
 
     }
 
-    public void showDialogAddMember(long id) {
+    public void showDialogAddAds(long id) {
         DialogFragment newFragment = AddRequstAdvertisingDialog.newInstance(id);
         newFragment.show(myChannelFragment.getFragmentManager(), "dialog");
 
     }
+
+    private void showDialogGetmember(Context context, final Channel channel){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_mychannel_getmember);
+
+
+        TextView title = (TextView) dialog.findViewById(R.id.titleDialog);
+        TextView errorMessage = (TextView) dialog.findViewById(R.id.errorMessage);
+        final ListView listDialog = (ListView) dialog.findViewById(R.id.listDialog);
+        final LinearLayout errorLay = (LinearLayout) dialog.findViewById(R.id.errorLay);
+
+        errorLay.setVisibility(View.INVISIBLE);
+        title.setText(R.string.MemberBegirTitle);
+        ReserveAdapter reserveAdapter = new ReserveAdapter(getContext(), R.layout.adapter_buy_coin, channel);
+        reserveAdapter.setOnClickListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                        Log.d("COMMAND","OnClick Triggerd 2");
+                final int count = Integer.parseInt(Defaults.MEMBERS_COUNT[which]);
+                Bitmap b = null;
+                b = channel.getBitMap();
+                myChannelFragment.setLoader(View.VISIBLE);
+                Commands.addChannel(channel, count, b, dialogsActivity, myChannelFragment);
+                if (alertDialog != null && alertDialog.isShowing()) {
+                    alertDialog.dismiss();
+                }
+            }
+        });
+
+        listDialog.setAdapter(reserveAdapter);
+        dialog.show();
+
+
+    }
+
 }

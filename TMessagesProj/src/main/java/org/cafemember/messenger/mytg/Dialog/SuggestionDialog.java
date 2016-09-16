@@ -88,43 +88,51 @@ public class SuggestionDialog extends DialogFragment {
                 layoutSuggest.addView(child);
             }
         }
-        accseptSuggestLay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Commands.acceptAd(id, new OnResponseReadyListener() {
-                    @Override
-                    public void OnResponseReady(boolean error, JSONObject data, String message) {
-                        if (!error) {
-                            mySuggestAdsAdapter.removeItem(object,numberSuggest);
-                            view.removeViewAt(numberSuggest);
-                            dismiss();
-                        } else {
-                            Toast.makeText(getActivity(), "vdvfv", Toast.LENGTH_SHORT).show();
+        if(mySuggestAdsAdapter != null) {
+            accseptSuggestLay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Commands.acceptAd(id, new OnResponseReadyListener() {
+                        @Override
+                        public void OnResponseReady(boolean error, JSONObject data, String message) {
+                            if (!error) {
+                                mySuggestAdsAdapter.removeItem(object, numberSuggest);
+                                view.removeViewAt(numberSuggest);
+                                dismiss();
+                                Toast.makeText(getActivity(), getActivity().getResources().getText(R.string.successMessage), Toast.LENGTH_SHORT).show();
+                            } else {
+
+                            }
                         }
-                    }
-                });
+                    });
 
 
-            }
-        });
-        rejectSuggestLay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Commands.rejectAd(id, new OnResponseReadyListener() {
-                    @Override
-                    public void OnResponseReady(boolean error, JSONObject data, String message) {
-                        if (!error) {
-                            mySuggestAdsAdapter.removeItem(object,numberSuggest);
-                            view.removeViewAt(numberSuggest);
-                            dismiss();
-                        } else {
-                            Toast.makeText(getActivity(), "vdvfv", Toast.LENGTH_SHORT).show();
+                }
+            });
+            rejectSuggestLay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Commands.rejectAd(id, new OnResponseReadyListener() {
+                        @Override
+                        public void OnResponseReady(boolean error, JSONObject data, String message) {
+                            if (!error) {
+                                mySuggestAdsAdapter.removeItem(object, numberSuggest);
+                                view.removeViewAt(numberSuggest);
+                                dismiss();
+                                Toast.makeText(getActivity(), getActivity().getResources().getText(R.string.successMessage), Toast.LENGTH_SHORT).show();
+                            } else {
+
+                            }
                         }
-                    }
-                });
+                    });
 
-            }
-        });
+                }
+            });
+        }
+        else {
+            accseptSuggestLay.setVisibility(View.GONE);
+            rejectSuggestLay.setVisibility(View.GONE);
+        }
         FontManager.instance().setTypefaceImmediate(v);
 
         return v;
