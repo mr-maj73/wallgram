@@ -14,4 +14,4 @@ TMessagesProj/test/
 TMessagesProj/obj/
 TMessagesProj/*.apk
 
-/TMessagesProj/jni/
+#/TMessagesProj/jni/
