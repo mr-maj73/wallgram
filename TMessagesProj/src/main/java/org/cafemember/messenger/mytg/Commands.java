@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
@@ -47,6 +49,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
+
+import io.nivad.iab.TransactionDetails;
 
 /**
  * Created by Masoud on 6/1/2016.
@@ -181,7 +185,15 @@ public class Commands {
     }
 
     public static void report(int id, String reason, OnResponseReadyListener onResponseReadyListener) {
-        API.getInstance().post(String.format(Locale.ENGLISH, "/channels/report/%d", id), "{\"reason\":\"" + reason + "\"}", onResponseReadyListener);
+        API.getInstance().post(String.format(Locale.ENGLISH, "/channels/report/%d", id), "{\"reason\":\"" + reason + "\",\"type\":0}", onResponseReadyListener);
+    }
+
+    public static void reportWall(int id, String reason, OnResponseReadyListener onResponseReadyListener) {
+        API.getInstance().post(String.format(Locale.ENGLISH, "/channels/report/%d", id), "{\"reason\":\"" + reason + "\",\"type\":1}", onResponseReadyListener);
+    }
+
+    public static void reportAdv(int id, String reason, OnResponseReadyListener onResponseReadyListener) {
+        API.getInstance().post(String.format(Locale.ENGLISH, "/channels/report/%d", id), "{\"reason\":\"" + reason + "\",\"type\":2}", onResponseReadyListener);
     }
 
     public static void coinsPrice(final OnResponseReadyListener onResponseReadyListener) {
@@ -220,8 +232,9 @@ public class Commands {
         context.startActivity(i);
     }
 
-    public static void checkBoughtItem(String id, final OnJoinSuccess success) {
-        API.getInstance().post(String.format(Locale.ENGLISH, "/coin/buyCoin/%s", id), "", new OnResponseReadyListener() {
+    public static void checkBoughtItem(String id, String details, final OnJoinSuccess success) {
+
+        API.getInstance().post(String.format(Locale.ENGLISH, "/coin/buyCoin/%s", id), details, new OnResponseReadyListener() {
             @Override
             public void OnResponseReady(boolean error, JSONObject data, String message) {
                 if (!error) {
@@ -1073,5 +1086,102 @@ public class Commands {
             }
         });
     }
+
+    public static void checkVersion(final DialogsActivity dialogsActivity){
+        try {
+            int versionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+            API.getInstance().run("/checkVersion/" + versionCode, new OnResponseReadyListener() {
+                @Override
+                public void OnResponseReady(boolean error, JSONObject data, String message) {
+                    if(!error){
+                        try {
+                            data = data.getJSONObject("data");
+                            /*data = new JSONObject();
+                            data.put("ok",false);
+                            data.put("link","http://google.com");
+                            data.put("force",true);
+                            data.put("changes","نسخه جدید آماده است");*/
+                            boolean isOK = data.getBoolean("ok");
+                            boolean force = false;
+                            if(!isOK){
+                                final String dlLink = data.getString("link");
+                                String changes = data.getString("changes");
+                                if(changes == null || changes.length() == 0){
+                                    changes = "نسخه جدید برنامه آماده است.\nبرای دریافت آن روی گزینه دانلود کلیک کنید";
+                                }
+                                if(data.has("force")){
+                                    force = data.getBoolean("force");
+                                }
+                                AlertDialog.Builder builder = null;
+                                builder = new AlertDialog.Builder(dialogsActivity.getParentActivity());
+
+                                builder.setTitle("آپدیت جدید");
+
+                                builder.setMessage(changes);
+
+                                builder.setPositiveButton("دانلود", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(dlLink));
+                                        dialogsActivity.getParentActivity().startActivity(intent);
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+                                builder.setCancelable(!force);
+                                if(!force) {
+                                    builder.setNegativeButton("بیخیال", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+                                        }
+                                    });
+                                    dialogsActivity.showDialog(builder.create());
+                                }
+                                else {
+
+                                    builder.setOnKeyListener(new Dialog.OnKeyListener() {
+
+                                        @Override
+                                        public boolean onKey(DialogInterface arg0, int keyCode,
+                                                             KeyEvent event) {
+                                            // TODO Auto-generated method stub
+                                            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                                                if (x < 1) {
+                                                    Toast.makeText(context, LocaleController.getString("backClickAgain", R.string.backClickAgain), Toast.LENGTH_SHORT).show();
+                                                    x++;
+                                                    new Handler().postDelayed(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            x = 0;
+                                                        }
+                                                    }, 1000);
+                                                    return true;
+
+                                                } else {
+                                                    if (context instanceof Activity) {
+                                                        ((Activity) context).finish();
+                                                    }
+                                                    return true;
+                                                }
+
+                                            }
+                                            return false;
+                                        }
+                                    });
+                                    dialogsActivity.showDialogNoCancel(builder.create());
+                                }
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

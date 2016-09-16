@@ -52,9 +52,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return advertisingFragment;
             case 2:
                 return myChannelFragment;
-            case 3:
-                return channelsFragment;
             case 0:
+                return channelsFragment;
+            case 3:
                 return coinFragment;
 
         }

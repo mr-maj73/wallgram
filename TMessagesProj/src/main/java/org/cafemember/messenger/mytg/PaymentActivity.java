@@ -127,6 +127,7 @@ public class PaymentActivity extends Activity {
         // Pass on the activity result to the helper for handling
         if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
+            finish();
         } else {
             Log.i(TAG, "onActivityResult handled by IABUtil.");
         }
@@ -146,7 +147,7 @@ public class PaymentActivity extends Activity {
 
     private void grantUser(String sku, final Purchase purchase) {
 
-        Commands.checkBoughtItem(sku, new OnJoinSuccess() {
+        Commands.checkBoughtItem(sku,purchase.getOriginalJson(), new OnJoinSuccess() {
             @Override
             public void OnResponse(boolean ok) {
                 if (ok) {

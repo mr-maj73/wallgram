@@ -85,7 +85,7 @@ public class Defaults {
             String token = preferences.getString(SUPPORT_KEY,"cafemember_admin");
             return token;
         }*/
-        return "tefelgardd";
+        return "alaki_admin";
     }
 
     public boolean setSupport(String token){

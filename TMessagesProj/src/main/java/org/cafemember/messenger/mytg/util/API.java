@@ -131,7 +131,7 @@ public class API {
             }
 
             if(s == null){
-                onResponseReadyListener.OnResponseReady(true,null,"Error In Connection");
+                onResponseReadyListener.OnResponseReady(true,null,"خطا در اتصال به اینترنت");
                 return;
             }
             try {

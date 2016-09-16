@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
@@ -95,6 +96,7 @@ public class HistoryActivity extends BaseFragment {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         fragmentView = inflater.inflate(R.layout.history_fragment, null);
         TabLayout tabLayout = (TabLayout) fragmentView.findViewById(R.id.tab_layout);
+        tabLayout.setBackgroundColor(Color.WHITE);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tabOrdersAdvertising), 0);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tabOrdersMemberShip), 1);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -178,7 +180,7 @@ public class HistoryActivity extends BaseFragment {
 //            }
 //        });
 //
-//        FontManager.instance().setTypefaceImmediate(fragmentView);
+        FontManager.instance().setTypefaceImmediate(fragmentView);
 
         return fragmentView;
     }

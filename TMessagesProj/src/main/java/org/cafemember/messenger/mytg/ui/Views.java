@@ -1,5 +1,6 @@
 package org.cafemember.messenger.mytg.ui;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -7,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +29,7 @@ public class Views {
         //lay.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));*/
 
         TabLayout tabLayout = (TabLayout) lay.findViewById(R.id.tabs);
+        tabLayout.setBackgroundColor(Color.WHITE);
         final MyViewPager viewPager = (MyViewPager) lay.findViewById(R.id.viewpager);
 
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(context.getSupportFragmentManager(), dialogsActivity, dialogsLayout);
@@ -56,16 +59,20 @@ public class Views {
         });
 
         final TabLayout.Tab telegram = tabLayout.newTab();
-        final TabLayout.Tab myChannels = tabLayout.newTab();
-        final TabLayout.Tab ChannelsFragment = tabLayout.newTab();
-        final TabLayout.Tab coinFragmentTab = tabLayout.newTab();
-        final TabLayout.Tab advertisingFragmentTab = tabLayout.newTab();
+        final TabLayout.Tab myChannels = tabLayout.newTab().setText(R.string.myChannelFragmentLeybel);
+        final TabLayout.Tab ChannelsFragment = tabLayout.newTab().setText(R.string.channelsFragmentLeybel);
+        final TabLayout.Tab coinFragmentTab = tabLayout.newTab().setText(R.string.coinFragmentLeybel);
+        final TabLayout.Tab advertisingFragmentTab = tabLayout.newTab().setText(R.string.advertisingFragmentLeybel);
         final TabLayout.Tab transfare = tabLayout.newTab();
 
+        tabLayout.addTab(ChannelsFragment, 0);
+        tabLayout.addTab(advertisingFragmentTab, 1);
+        tabLayout.addTab(myChannels, 2);
+        tabLayout.addTab(coinFragmentTab, 3);
 
 //        telegram.setIcon(R.drawable.ic_message);
 //        channels.setText("خرید سکه");
-        View tabOne = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+       /* View tabOne = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
         TextView text = (TextView) tabOne.findViewById(R.id.text);
         ImageView icon = (ImageView) tabOne.findViewById(R.id.icon);
         text.setText(R.string.coinFragmentLeybel);
@@ -99,7 +106,7 @@ public class Views {
         text.setText(R.string.channelsFragmentLeybel);
 //        icon.setImageResource(R.drawable.free_coin);
         ChannelsFragment.setCustomView(tabFour);
-
+*/
 
 
 //        View tabFour =  LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
@@ -118,13 +125,9 @@ public class Views {
 
 
 //        tabLayout.addTab(telegram, 0);
-        tabLayout.addTab(coinFragmentTab, 0);
-        tabLayout.addTab(advertisingFragmentTab, 1);
-        tabLayout.addTab(myChannels, 2);
-        tabLayout.addTab(ChannelsFragment, 3);
 
 //        tabLayout.setTabMode(ViewGroup.);
-        tabLayout.setTabTextColors(ContextCompat.getColorStateList(context, R.color.abc_primary_text_material_dark));
+//        tabLayout.setTabTextColors(ContextCompat.getColorStateList(context, R.color.abc_primary_text_material_dark));
 
         FontManager.instance().setTypefaceImmediate(tabLayout);
 
@@ -146,6 +149,13 @@ public class Views {
 
             }
         });
+
+        for(int i=0; i < tabLayout.getTabCount(); i++) {
+            View tab = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(i);
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
+            p.setMargins(25, 0, 25, 0);
+            tab.requestLayout();
+        }
 
         return lay;
 

@@ -16,10 +16,10 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         app:cardBackgroundColor="#FFF"
         app:cardElevation="5dp"
         android:id="@+id/cardOrderAdv">
@@ -149,12 +149,31 @@
                                 android:layout_below="@id/title"
                                 android:gravity="center_vertical|right"
                                 android:paddingLeft="8dp"
-                                android:text="date"
+                                android:text="تاریخ"
                                 android:textColor="@color/light_gray"
                                 android:textSize="@dimen/normal_text"
                                 android:paddingTop="4dp"
                                 android:paddingBottom="4dp"
                                 android:paddingRight="4dp" />
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:id="@+id/txtStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/title"
+                                android:gravity="center_vertical|right"
+                                android:paddingLeft="8dp"
+                                android:text="وضعیت"
+                                android:textColor="@color/light_gray"
+                                android:textSize="@dimen/normal_text"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -215,7 +234,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/showCondition"
                     android:textColor="@color/fontPrice"
-                    android:textSize="26sp"
+                    android:textSize="@dimen/bold_text"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:drawable="@drawable/custom_selected_button"

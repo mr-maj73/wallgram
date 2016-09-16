@@ -89,7 +89,7 @@ public class ReserveAdapter extends ArrayAdapter<String> {
         viewHolder.description.setText(count + " عضو ");
         // viewHolder.buy.setText("خرید  "+price);
         viewHolder.btnBy .setText( " خرید "+price);
-        viewHolder.holder.setOnClickListener(new View.OnClickListener() {
+        viewHolder.btnBy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                    Log.d("COMMAND","OnClick Triggerd 1");

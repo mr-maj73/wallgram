@@ -5,10 +5,16 @@
 <resources>
     <string name="coin_count_hint">سکه</string>
     <!-- add by vaezinia-->
+
+    <string name="ads_warming1">در صورت عدم تایید مخاطب و یا لغو درخواست، تمام سکه های شما برگردانده میشود</string>
+    <string name="ads_warming2">لطفا شرایط مورد نظر خود را به تفکیک و دقیق وارد نمایید.\nپیگیری شکایات بر مبنای شرایط شما صورت میگیرد.</string>
+    <string name="band_you">شرایط سفارش دهنده</string>
+    <string name="communication_whit_user">ارتباط با مخاطب</string>
+    <string name="write_publicity">ثبت تبلیغات</string>
     <string name="coinFragmentLeybel">فروشگاه</string>
-    <string name="advertisingFragmentLeybel">اگهی</string>
+    <string name="advertisingFragmentLeybel">وال تبلیغات</string>
     <string name="myChannelFragmentLeybel">کانال های من</string>
-    <string name="channelsFragmentLeybel">سکه رایگان</string>
+    <string name="channelsFragmentLeybel">سکه بگیر</string>
     <string name="connectToMember">ارتباط با مخاطب</string>
     <string name="adverSubmit">ثبت تبلیغات</string>
     <string name="all">همگی</string>
@@ -20,13 +26,13 @@
     <string name="optionDialogAdv3">شرط سوم</string>
     <string name="priceDialogAdv">تعداد سکه</string>
     <string name="titleDialogAdv">شرایط سفارش دهنده</string>
-    <string name="buttonDialogAdv">ثبت و پرداخت سکه</string>
+    <string name="buttonDialogAdv">ثبت  سفارش </string>
     <string name="moreOptionDialogAdv">افزودن شرایط بیشتر</string>
     <string name="errorDialogComplite">مقدار سکه وارد نشده است.</string>
     <string name="errorDialogConnect">خطا در برقراری ارتباط</string>
-    <string name="titleDialogAddMemebers">درج اگهی</string>
-    <string name="alertDialogAddMemebers1">درج اکهی شما....</string>
-    <string name="alertDialogAddMemebers2">درج اگهی شما ....</string>
+    <string name="titleDialogAddMemebers">درج آگهی</string>
+    <string name="alertDialogAddMemebers1">درج آگهی شما....</string>
+    <string name="alertDialogAddMemebers2">درج آگهی شما ....</string>
     <string name="spinnerDialogAddMemebers2">دسته بندی</string>
     <string name="descriptionDialogAddMemebers2">توضیحات</string>
     <string name="submitDialogAddMemebers">ثبت</string>
@@ -42,12 +48,14 @@
     <string name="okDialogShowSugeest">تایید</string>
     <string name="noDialogShowSugeest">لغو</string>
     <string name="successMessage">تغییرات به درستی ثبت گردید.</string>
+    <string name="removeAdsMessage">حذف آگهی</string>
     <string name="reportMessage">گزارش تخلف</string>
-    <string name="tabOrdersAdvertising">سفارش اگهی</string>
+    <string name="tabOrdersAdvertising">سفارش آگهی</string>
     <string name="tabOrdersMemberShip">سفارش عضویت</string>
     <string name="orderpicker">تعداد سفارش :</string>
     <string name="coinDeal">عضو شده :</string>
     <string name="showCondition">مشاهده شرایط</string>
+    <string name="appHelp">راهنما</string>
 
 
 
@@ -66,8 +74,15 @@
 
 
 
+    <string name="suggestHelp">لطفا شرایط مورد نظر خود را به تفکیک و دقیق بیان نمایید.\n
+    پیگیری شکایات بر مبنای شرایط شما صورت می گیرد.\n
+    در صورت عدم تایید مخاطب یا لغو در خواست ، تمام سکه های شما برگردانده می شود.</string>
 
+<string name="addAdHelp">دسته بندی مناسب برای کانال خود انتخاب کنید\n
+در منو کشویی گزینه آگهی های من می توانید پیشنهادهای آگهی ها را مشاهده کنید</string>
 
+    <string name="suggestHelpTitle">راهنمای درج آگهی</string>
+    <string name="addAdHelpTitle">راهنمای ثبت تبلیغات</string>
     <!-- My Tg Resources-->
 
     <string name="ViewBegir">بازدید بگیر</string>
@@ -97,7 +112,7 @@
     <string name="MenuHelp">راهنما</string>
     <string name="MenuTransfare">انتقال سکه</string>
     <string name="MenuRef">ثبت معرف</string>
-    <string name="MenuShare">معرفی و 30 سکه</string>
+    <string name="MenuShare">معرفی</string>
     <string name="MenuFAQ">سوالات متداول</string>
     <string name="MenuHistory">سفارشات</string>
     <string name="MenuRules">قوانین</string>
@@ -126,8 +141,10 @@
     <string name="TransfareAmountHint">مقدار انتقال</string>
     <string name="HistoryTitle">سفارشات</string>
 
-    <string name="font_iransans">IRANSansFa.ttf</string>
-    <string name="font_iransans_en">IRANSansMobile.ttf</string>
+    <!--<string name="font_iransans">IRANSansFa.ttf</string>
+    <string name="font_iransans_en">IRANSansMobile.ttf</string>-->
+    <string name="font_iransans">vazir.ttf</string>
+    <string name="font_iransans_en">vazir.ttf</string>
 
 
     <string name="ShareText">دریافت سکه رایگان !!!

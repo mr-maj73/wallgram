@@ -1,9 +1,10 @@
 package org.cafemember.messenger.mytg;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
-import org.cafemember.messenger.ApplicationLoader;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.util.FileConvert;
 
@@ -28,9 +29,13 @@ public class ChannelOrderMemberShip {
             return FileConvert.getBitmapFromString(byteString);
         }
         else {
-//            Log.e("CH","Default Bit");
-            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(),
-                    R.drawable.default_channel_icon);
+            Log.e("CHC","Default Bit");
+            return BitmapFactory.decodeResource(Resources.getSystem(),R.drawable.default_channel_icon);
+            /*ColorGenerator generator = ColorGenerator.MATERIAL;
+            String s = name;
+            int color = generator.getColor(s);
+            TextDrawable ic1 = TextDrawable.builder().buildRect(s, color);
+            return FileConvert.convertToBitmap(ic1, ic1.getIntrinsicWidth(), ic1.getIntrinsicHeight());*/
         }
     }
 

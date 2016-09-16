@@ -63,7 +63,7 @@ public class CoinsAdapter extends ArrayAdapter {
             String description = coin.getString("count");
  //           viewHolder.description.setText(priceDescription + " تومان");
             viewHolder.priceNumber.setText(priceDescription + " تومان");
-            viewHolder.coinNumber.setText(coinDescription + "  خرید  ");
+            viewHolder.coinNumber.setText( "  خرید  "+coinDescription+" سکه");
 //            int offPrice = Integer.parseInt(off);
 //            if (offPrice == Integer.parseInt(price)) {
 //                viewHolder.description.setVisibility(View.GONE);
@@ -79,14 +79,12 @@ public class CoinsAdapter extends ArrayAdapter {
 ////                viewHolder.coin.setImageResource(R.drawable.coin_green);
 //                viewHolder.cardView.setCardBackgroundColor(Color.WHITE);
 //            }
-/*
-            viewHolder.count.setOnClickListener(new View.OnClickListener() {
+            viewHolder.coinNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Commands.buy(id);
                 }
             });
-*/
         } catch (JSONException e) {
             e.printStackTrace();
         }

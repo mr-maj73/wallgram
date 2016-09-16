@@ -80,7 +80,7 @@ public class OrdersAdvertising extends Fragment
                             members.add(member);
 
                         }
-                        Log.i("momhammad", "tttttttt");
+//                        Log.i("momhammad", "tttttttt");
                         OrdersAdvertisingAdapter adapter = new OrdersAdvertisingAdapter(getActivity(), members);
                         orderadvertisingList.setAdapter(adapter);
                         adapter.notifyDataSetChanged();

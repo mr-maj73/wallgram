@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     app:cardBackgroundColor="@android:color/white"
-    app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
     app:cardUseCompatPadding="true">
 
@@ -28,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <RelativeLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -37,13 +36,15 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp">
+                        android:layout_height="55dp"
+                        android:id="@+id/tit">
 
                         <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:id="@+id/imgOptionAdv"
-                            android:src="@drawable/stack" />
+                            android:src="@drawable/stack"
+                            android:visibility="gone" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -60,9 +61,33 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/reportLayout"
+                        android:layout_width="150dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="30dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/txtReport"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/border_more_button"
+                            android:gravity="center"
+                            android:text="@string/removeAdsMessage"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/hint" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cat"
+                        android:layout_below="@+id/tit">
 
                         <TextView
                             android:layout_width="0dp"
@@ -94,7 +119,9 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/desc"
+                        android:layout_below="@+id/cat">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -112,7 +139,7 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:orientation="vertical"

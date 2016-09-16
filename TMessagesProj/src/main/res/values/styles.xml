@@ -128,6 +128,7 @@
         <item name="tabIndicatorColor">@color/fontPrice</item>
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
         <item name="tabSelectedTextColor">@color/fontPrice</item>
+        <item name="android:background">@color/white</item>
         <!--<item name="tabSelectedTextSize">22sp</item>-->
         <item name="tabIndicatorHeight">2dp</item>
     </style>

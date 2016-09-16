@@ -7,23 +7,18 @@
     <!--Telegram Original Strings-->
     <string name="AppName">والگرام</string>
     <!--<string name="AppName">تفلگارد</string>-->
-    <string name="AppNameBeta">والگرام بتا</string>
+    <string name="AppNameBeta">والگرام</string>
     <!--<string name="AppNameBeta">تفلگارد بتا</string>-->
-    <string name="LanguageName">English</string>
-    <string name="LanguageNameInEnglish">English</string>
-    <string name="LanguageCode">en</string>
+    <string name="LanguageName">پارسی</string>
+    <string name="LanguageNameInEnglish">Parsi</string>
+    <string name="LanguageCode">fa_IR</string>
     <!--signin view-->
-    <string name="YourPhone">Your phone</string>
-    <string name="StartText">Please confirm your country code and enter your phone number.</string>
-    <string name="ChooseCountry">Choose a country</string>
-    <string name="WrongCountry">Wrong country code</string>
-    
+    <string name="YourPhone">شماره موبایل شما</string>
+    <string name="StartText">‫لطفاً کد کشورتان را تأیید  \n و شماره تلفنتان را وارد کنید.</string>
+    <string name="ChooseCountry">انتخاب کشور</string>
+    <string name="WrongCountry">کد کشور اشتباه است</string>
+
     <!--xml string-->
-    <string name="communication_whit_user">ارتباط با مخاطب</string>
-    <string name="write_publicity">ثبت تبلیغات</string>
-    <string name="ads_warming1">در صورت عدم تایید مخاطب و یا لغو درخواست، تمام سکه های شما برگردانده میشود</string>
-    <string name="ads_warming2">لطفا شرایط مورد نظر خود را به تفکیک و دقیق وارد نمایید.\nپیگیری شکایات بر مبنای شرایط شما صورت میگیرد.</string>
-    <string name="band_you">شرایط سفارش دهنده</string>
     
     
     
@@ -45,51 +40,51 @@
     
     
     <!--code enter view-->
-    <string name="YourCode">Phone verification</string>
-    <string name="SentSmsCode">We\'ve sent an SMS with an activation code to your phone <![CDATA[<b>]]>%1$s<![CDATA[</b>]]>.</string>
-    <string name="SentAppCode">We\'ve sent the code to the <![CDATA[<b>]]>Telegram<![CDATA[</b>]]> app on your other device.</string>
-    <string name="SentCallCode">We\'ve sent an activation call to your phone <![CDATA[<b>]]>%1$s<![CDATA[</b>]]>.\n\nDon\'t take it, Telegram will process everything automatically.</string>
-    <string name="SentCallOnly">We are calling your phone <![CDATA[<b>]]>%1$s<![CDATA[</b>]]> to dictate a code.</string>
-    <string name="CallText">We will call you in %1$d:%2$02d</string>
-    <string name="SmsText">We will send you an SMS in %1$d:%2$02d</string>
-    <string name="Calling">Calling you...</string>
-    <string name="Code">Code</string>
-    <string name="WrongNumber">Wrong number?</string>
-    <string name="DidNotGetTheCode">Didn\'t get the code?</string>
+    <string name="YourCode">کد شما</string>
+    <string name="SentSmsCode">پیامک کد فعال سازی فرستاده شد</string>
+    <string name="SentAppCode">کد فعال سازی برای  <![CDATA[<b>]]>تلگرام<![CDATA[</b>]]> شما در دستگاه دیگر ارسال شد.</string>
+    <string name="SentCallCode">تماس فعال سازی برای شماره <![CDATA[<b>]]>%1$s<![CDATA[</b>]]> ارسال شد.\n\n</string>
+    <string name="SentCallOnly">در حال تماس با شماره <![CDATA[<b>]]>%1$s<![CDATA[</b>]]></string>
+    <string name="CallText">%1$d:%2$02d تماس گرفته می شود</string>
+    <string name="Calling">در حال تماس ...</string>
+    <string name="SmsText">پیامک برای شما تا  %1$d:%2$02d دیگر ارسال می شود</string>
+    <string name="Code">کد</string>
+    <string name="WrongNumber">شماره اشتباه است</string>
+    <string name="DidNotGetTheCode">کد دریافت نشد؟</string>
     <!--signup view-->
-    <string name="YourName">Your name</string>
-    <string name="RegisterText">Set up your first and last name</string>
+    <string name="YourName">نام شما</string>
+    <string name="RegisterText">نام و نام خانوادگی</string>
     <!--<string name="RegisterText">Set up your name and picture</string>-->
-    <string name="FirstName">First name (required)</string>
-    <string name="LastName">Last name (optional)</string>
-    <string name="CancelRegistration">Cancel registration</string>
-    <!--chats view-->
-    <string name="Settings">Settings</string>
-    <string name="Contacts">Contacts</string>
-    <string name="NewGroup">New Group</string>
-    <string name="Yesterday">yesterday</string>
-    <string name="NoResult">No results</string>
-    <string name="NoChats">No chats yet...</string>
-    <string name="NoChatsHelp">Start messaging by pressing the\nnew message button in the bottom right corner\nor tap the menu button for more options.</string>
-    <string name="WaitingForNetwork">Waiting for network...</string>
-    <string name="Connecting">Connecting...</string>
-    <string name="Updating">Updating...</string>
-    <string name="NewSecretChat">New Secret Chat</string>
-    <string name="AwaitingEncryption">Waiting for %s to get online...</string>
-    <string name="EncryptionRejected">Secret chat cancelled</string>
-    <string name="EncryptionProcessing">Exchanging encryption keys...</string>
-    <string name="EncryptedChatStartedOutgoing">%s joined your secret chat.</string>
-    <string name="EncryptedChatStartedIncoming">You joined the secret chat.</string>
-    <string name="ClearHistory">Clear history</string>
-    <string name="ClearHistoryCache">Delete from cache</string>
-    <string name="DeleteChat">Delete and exit</string>
-    <string name="DeleteChatUser">Delete chat</string>
-    <string name="HiddenName">Deleted Account</string>
-    <string name="SelectChat">Select Chat</string>
-    <string name="PhotoTip">Tap and hold to view</string>
-    <string name="CompatibilityChat">%1$s is using an older version of Telegram, so secret photos will be shown in compatibility mode.\n\nOnce %2$s updates Telegram, photos with timers for 1 minute or less will start working in \'Tap and hold to view\' mode, and you will be notified whenever the other party takes a screenshot.</string>
-    <string name="SearchMessages">MESSAGES</string>
-    <string name="Search">Search</string>
+    <string name="FirstName">نام ( الزامی)</string>
+    <string name="LastName">نام خانوادگی (الزامی)</string>
+    <string name="CancelRegistration">پشیمانی ازنام نویسی</string>
+	<string name="Settings">تنظیمات</string>
+	<string name="Contacts">مخاطبین</string>
+	<string name="NewGroup">گروه نو</string>
+	<string name="Yesterday">دیروز</string>
+	<string name="NoResult">نتیجه ای یافت نشد.</string>
+	<string name="NoChats">گفتگویی نیست</string>
+	<string name="NoChatsHelp">‫با فشردن دکمه‌ی فرستادن \n در گوشه‌ی بالا سمت راست \n پیام رسانی را آغاز کنید \n یا برای انتخاب‌های بیش‌تر \n دکمه‌ی فهرست را بزنید.</string>
+	<string name="WaitingForNetwork">چشم به راه نت...</string>
+	<string name="Connecting">در حال پیوستن به نت ...</string>
+	<string name="Updating">در حال به روز رسانی...</string>
+	<string name="NewSecretChat">گفتگوی پنهانی نو</string>
+	<string name="AwaitingEncryption">چشم به راه %s تا آنلاین شود...</string>
+	<string name="EncryptionRejected">پشیمانی ازگفتگوی پنهانی</string>
+	<string name="EncryptionProcessing">تبادل کلید های رمزنگاری ...</string>
+	<string name="EncryptedChatStartedOutgoing">%s به گفتگوی پنهانی شما پیوست.</string>
+	<string name="EncryptedChatStartedIncoming">به گفتگوی پنهانی پیوستید.</string>
+	<string name="ClearHistory">‫زدودن تاریخچه</string>
+	<string name="DeleteChat">گفتگو را بزدای</string>
+	<string name="DeleteChatUser">زدودن گفتگو کننده</string>
+	<string name="HiddenName">نام پنهان</string>
+	<string name="SelectChat">برگزیدن گفتگو</string>
+	<string name="PhotoTip">برای دیدن، فشرده و نگه دارید</string>
+	<string name="CompatibilityChat">%1$s از یک نسخه قدیمی تلگرام استفاده می کند، برای همین تصاویر سرّی در حالت سازگار نمایش داده می شود .
+
+زمانی که %2$s تلگرام را به روز کند ، عکس هایی با تایمر 1 دقیقه یا کمتر در حالت \"ضربه بزنید و نگه دار تا ببینید\" شروع به کار می کنند، و هر موقع طرف مقابل از صفحه عکس بگیرد، شما مطلع میشوید.</string>
+	<string name="SearchMessages">یافتن پیام ها</string>
+	<string name="Search">یافتن</string>
     <string name="MuteNotifications">Mute notifications</string>
     <string name="MuteFor">Mute for %1$s</string>
     <string name="UnmuteNotifications">Unmute</string>
@@ -256,10 +251,10 @@
     <string name="ChannelSignMessagesInfo">Add names of the admins to the messages they post.</string>
     <!--broadcasts-->
     <string name="NewBroadcastList">New Broadcast List</string>
-    <string name="EnterListName">Enter list name</string>
-    <string name="YouCreatedBroadcastList">You created a broadcast list</string>
-    <string name="AddRecipient">Add recipient</string>
-    <string name="KickFromBroadcast">Remove from broadcast list</string>
+	<string name="EnterListName"> نام گذاری لیست</string>
+	<string name="YouCreatedBroadcastList">لیست سخن‌پراکنی نویی برپا کردید</string>
+	<string name="AddRecipient">برگزیدن مخاطب</string>
+	<string name="KickFromBroadcast">از لیست سخن‌پراکنی، بزدای</string>
     <!--audio view-->
     <string name="NoAudio">Please add files to the music library on your device to see them here.</string>
     <string name="AttachMusic">Music</string>
@@ -997,10 +992,10 @@
     <string name="SecretChatContextBotAlert">Please note that inline bots are provided by third-party developers. For the bot to work, the symbols you type after the bot\'s username are sent to the respective developer.</string>
     <string name="RaiseToSpeakAlert">Would you like to enable "Raise to speak" for voice messages?</string>
     <string name="EditMessageError">Sorry, you can\'t edit this message.</string>
-    <string name="AllowReadSms">Please allow Telegram to receive SMS so that we can automatically enter your code for you.</string>
-    <string name="AllowReadCall">Please allow Telegram to receive calls so that we can automatically enter your code for you.</string>
-    <string name="AllowReadCallAndSms">Please allow Telegram to receive calls and SMS so that we can automatically enter your code for you.</string>
-    <string name="UserRestricted">Sorry, you are not allowed to do this.</string>
+    <string name="AllowReadSms">لطفا به والگرام اجازه دریافت پیامک را بدهید تا بتوانیم کد فعال سازی را به صورت اتومات وارد کنیم</string>
+    <string name="AllowReadCall">لطفا به والگرام اجازه دریافت تماس را بدهید تا بتوانیم کد فعال سازی را به صورت اتومات وارد کنیم</string>
+    <string name="AllowReadCallAndSms">لطفا به والگرام اجازه دریافت پیامک و تماس را بدهید تا بتوانیم کد فعال سازی را به صورت اتومات وارد کنیم</string>
+    <string name="UserRestricted">ببخشید, شما مجاز به انجام این کار نیستید</string>
     <!--permissions-->
     <string name="PermissionContacts">Telegram needs access to your contacts so that you can connect with your friends across all your devices.</string>
     <string name="PermissionStorage">Telegram needs access to your storage so that you can send and save photos, videos, music and other media.</string>
@@ -1009,21 +1004,21 @@
     <string name="PermissionNoLocationPosition">Telegram needs access to your location.</string>
     <string name="PermissionOpenSettings">SETTINGS</string>
     <!--Intro view-->
-    <string name="Page1Title">Telegram</string>
-    <string name="Page2Title">Fast</string>
-    <string name="Page3Title">Free</string>
-    <string name="Page4Title">Secure</string>
-    <string name="Page5Title">Powerful</string>
-    <string name="Page6Title">Cloud-Based</string>
-    <string name="Page7Title">Private</string>
-    <string name="Page1Message">The world\'s <![CDATA[<b>fastest</b>]]> messaging app.<![CDATA[<br/>]]>It is <![CDATA[<b>free</b>]]> and <![CDATA[<b>secure</b>]]>.</string>
-    <string name="Page2Message"><![CDATA[<b>Telegram</b>]]> delivers messages faster than<![CDATA[<br/>]]>any other application.</string>
-    <string name="Page3Message"><![CDATA[<b>Telegram</b>]]> is free forever. No ads.<![CDATA[<br/>]]>No subscription fees.</string>
-    <string name="Page4Message"><![CDATA[<b>Telegram</b>]]> keeps your messages safe<![CDATA[<br/>]]>from hacker attacks.</string>
-    <string name="Page5Message"><![CDATA[<b>Telegram</b>]]> has no limits on the size of<![CDATA[<br/>]]>your media and chats.</string>
-    <string name="Page6Message"><![CDATA[<b>Telegram</b>]]> lets you access your messages<![CDATA[<br/>]]>from multiple devices.</string>
-    <string name="Page7Message"><![CDATA[<b>Telegram</b>]]> messages are heavily encrypted<![CDATA[<br/>]]>and can self-destruct.</string>
-    <string name="StartMessaging">Start Messaging</string>
+    <string name="Page1Title">تلگرام</string>
+    <string name="Page2Title">سریع</string>
+    <string name="Page3Title">رایگان</string>
+    <string name="Page4Title">امن</string>
+    <string name="Page5Title">قدرتمند</string>
+    <string name="Page6Title">بر پایه ابری</string>
+    <string name="Page7Title">خصوصی</string>
+    <string name="Page1Message">&lt;b&gt;سریع ترین&lt;/b&gt; برنامه پیارم رسان جهان .&lt;br/&gt; &lt;b&gt;رایگان&lt;/b&gt; و &lt;b&gt;امن&lt;/b&gt;</string>
+    <string name="Page2Message">&lt;b&gt;تلگرام&lt;/b&gt; خیلی سریع تر از &lt;br/&gt;دیگران برنامه می فرستد</string>
+    <string name="Page3Message">&lt;b&gt;تلگرام&lt;/b&gt; همواره رایگان است و تبلیغی ندارد&lt;br/&gt;هیچ هزینه اشتراکی نمی خواهد</string>
+    <string name="Page4Message">&lt;b&gt;تلگرام&lt;/b&gt; پیام های شما را &lt;br/&gt;از حمله هکرها حفظ می کند</string>
+    <string name="Page5Message">&lt;b&gt;تلگرام&lt;/b&gt; هیچ محدودیتی برای  &lt;br/&gt;حجم فایل ها و گفتگو ها ندارد</string>
+    <string name="Page6Message">&lt;b&gt;تلگرام&lt;/b&gt;به شما این اجازه را میدهد که&lt;br/&gt;با دستگاه های مختلف وصل شوید</string>
+    <string name="Page7Message">&lt;b&gt;تلگرام&lt;/b&gt; پیام ها را به طور حیرت آوری  &lt;br/&gt;رمز نگاری می کند و شما می توانید آنها را از بین ببرید</string>
+    <string name="StartMessaging">شروع تبلیغات</string>
     <!--plural-->
     <string name="Online_zero">%1$d online</string>
     <string name="Online_one">%1$d online</string>

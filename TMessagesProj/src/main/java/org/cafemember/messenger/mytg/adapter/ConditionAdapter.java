@@ -61,9 +61,9 @@ public class ConditionAdapter extends
 //        final RecyclerViewHolder mainHolder = (RecyclerViewHolder) holder;// holder
 
         holder.myCustomEditTextListener.updatePosition(position);
-       // holder.edtCondition.setHint(hin);
-        holder.hintCondition.setHint(hin);
+        holder.edtCondition.setHint(hin);
         holder.edtCondition.setText(condition.get(position));
+//        holder.hintCondition.setHint(hin);
 
 
 

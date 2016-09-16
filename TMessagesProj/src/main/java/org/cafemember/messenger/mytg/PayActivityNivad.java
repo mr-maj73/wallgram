@@ -22,7 +22,8 @@ public class PayActivityNivad extends Activity {
 
 	private static final String NIVAD_APP_ID = "896b2db5-c89e-4ec9-a70a-72282d474e21";
     private static final String NIVAD_APP_SECRET = "04t87AOgv66YHW6C5814DXdN3zOplbn8npqXIw972fsu92ZWZpEUj2TkijwAgHGs";
-    final String BAZAAR_KEY = "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDAD+mkd/W+9SymV0KtE7tayd5oGcLZRwylQJLXI0EuwJnvfChT58XJJmOitquaUFIXnmO84spLRsVvbeuxM4nUsTihEWxNOFDD/h1MW4lT5wEkXR7dNb6Z1WrA1uRImNoqtD817L4wwaDC5F8JixczBsIplalFqWX3oq0fCAo1q9GJ+1FQfmO39GkJbKH9T/ZzsI3kFPNVt+VacLwSsa1iqO3ppdPik4PjOQmGZMcCAwEAAQ==";
+//    final String BAZAAR_KEY = "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDwTZhig/xOyPNvi1UWMqpXftPV4t8zfgnMwfiWfzFUDGIdTjbKOvGZPV6mHpPVkLXYiTNq7mLg2r6IZFBr8DEMj4LXUpkgjW5IFW3VWWcCxE9eTSiFLPBR5iHFaVkLQdOMW8ALsdARbeRJ5AsjFQV6cIbqk6AXWUxtwFrwYHqwPJBiUBoSRin54giYmkAsX91X4dzCLzrWTqCCDDdPs9KYDYr5tmFd0j5SP5bNrWkCAwEAAQ==";
+    final String BAZAAR_KEY = "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDho82R4VhTDIMaOoi2zUKUomrhcuSElL9yvGvUjySWKnepiAfh4wBUcz+KVeMpI0snuVrsPRbcBILhg7eQFbxa9pbKknweG9s/er8ap7su28FSgoNrGTBZC+hQvgXtEkg7jMZAIn8rL/HGgYTlY0NG21D42Qf/sx3kQmrE2dInj8C2lGVkfK4CPv/OVxUvW6EidGOnKIVtZzOZoEVclZ1SmwVeUt/T+0yMIgJkSXUCAwEAAQ==";
 
 	IabHelper mHelper;
 
@@ -36,7 +37,7 @@ public class PayActivityNivad extends Activity {
 		super.onCreate(savedInstanceState);
 
 		sku = getIntent().getStringExtra("sku");
-		mNivadBilling = new BillingProcessor(this, BAZAAR_KEY, NIVAD_APP_ID, NIVAD_APP_SECRET, mBillingMethods);
+		mNivadBilling = new BillingProcessor(this, BAZAAR_KEY, null, null, mBillingMethods);
 
 
 	}
@@ -55,7 +56,7 @@ public class PayActivityNivad extends Activity {
 		@Override
 		public void onProductPurchased(String sku, final TransactionDetails details) {
 			// این متد پس از خرید موفق فراخوانی می‌شود
-            Commands.checkBoughtItem(sku, new OnJoinSuccess() {
+            Commands.checkBoughtItem(sku, details.purchaseInfo.responseData, new OnJoinSuccess() {
                 @Override
                 public void OnResponse(boolean ok) {
                     if (ok) {

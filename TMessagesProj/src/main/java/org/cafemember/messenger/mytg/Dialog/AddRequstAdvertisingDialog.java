@@ -8,6 +8,9 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -15,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.cafemember.messenger.LocaleController;
 import org.cafemember.messenger.R;
 import org.cafemember.messenger.mytg.CategoryChannel;
 import org.cafemember.messenger.mytg.Commands;
@@ -63,7 +67,7 @@ public class AddRequstAdvertisingDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         View v = inflater.inflate(R.layout.add_requst_advertising_dialog, container, false);
 
@@ -75,6 +79,16 @@ public class AddRequstAdvertisingDialog extends DialogFragment {
         spinnerAddMember = (Spinner) v.findViewById(R.id.spinnerAddMember);
         txtAlertDialogAddMember = (TextView) v.findViewById(R.id.txtAlertDialogAddMember);
         txtAlertDialogAddMember.setVisibility(View.INVISIBLE);
+        Animation myBlinkAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.blink);
+        View help = v.findViewById(R.id.help);
+        help.startAnimation(myBlinkAnimation);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = HelpDialog.newInstance(LocaleController.getString("addAdHelp",R.string.addAdHelp),LocaleController.getString("addAdHelpTitle",R.string.addAdHelpTitle));
+                newFragment.show(getFragmentManager(), "help");
+            }
+        });
         initializeSpinner(getActivity());
 
         submitAddMemberLayout.setOnClickListener(new View.OnClickListener() {

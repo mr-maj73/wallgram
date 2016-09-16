@@ -9,12 +9,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/titleDialogShowSugeest"
-        android:id="@+id/textView12"
+        android:id="@+id/title"
         android:paddingTop="25dp"
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
         android:paddingBottom="25dp"
-        android:textColor="@color/hint" />
+        android:textColor="@color/hint"
+        android:textSize="@dimen/dialog_title_font_size" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -62,7 +63,8 @@
                 android:gravity="left|center_vertical"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:textColor="@color/fontPrice" />
+                android:textColor="@color/fontPrice"
+                android:textSize="@dimen/dialog_button_font_size" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +88,8 @@
                 android:gravity="center_vertical|right"
                 android:paddingRight="4dp"
                 android:paddingLeft="4dp"
-                android:textColor="@color/fontPrice" />
+                android:textColor="@color/fontPrice"
+                android:textSize="@dimen/dialog_button_font_size" />
 
             <ImageView
                 android:layout_width="60dp"

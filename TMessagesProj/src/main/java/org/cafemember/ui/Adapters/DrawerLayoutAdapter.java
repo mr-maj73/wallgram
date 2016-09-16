@@ -90,11 +90,11 @@ public class DrawerLayoutAdapter extends BaseAdapter {
                     view = new DrawerActionCell(mContext);
                 }
                 DrawerActionCell actionCell = (DrawerActionCell) view;
-                if (i == 3) {
+                if (i == 4) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuChannel", R.string.MenuChannel), R.drawable.menu_channel);
-                }else if (i == 2) {
+                }else if (i == 10) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuRate", R.string.MenuRate), R.drawable.my_menu_rate);
-                }  else if (i == 4) {
+                }  else if (i == 3) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuHistory", R.string.MenuHistory), R.drawable.my_menu_history);
                 } else if (i == 5) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuFAQ", R.string.MenuFAQ), R.drawable.my_menu_faq);
@@ -106,7 +106,7 @@ public class DrawerLayoutAdapter extends BaseAdapter {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuRef", R.string.MenuRef), R.drawable.my_menu_ref);
                 } else if (i == 9) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuShare", R.string.MenuShare), R.drawable.my_menu_share);
-                } else if (i == 10) {
+                } else if (i == 2) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuMyAds", R.string.MenuMyAds), R.drawable.my_menu_money);
                 }else if (i == 12) {
                     actionCell.setTextAndIcon(LocaleController.getString("MenuExit", R.string.MenuExit), R.drawable.menu_settings);

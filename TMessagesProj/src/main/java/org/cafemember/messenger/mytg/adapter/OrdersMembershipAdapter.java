@@ -56,6 +56,9 @@ public class OrdersMembershipAdapter extends
 
 
         mainHolder.title.setText(memeber.name);
+        mainHolder.txtDate.setText(memeber.date);
+//        Log.e("DATE",memeber.date);
+        mainHolder.imageChannel.setImageBitmap(memeber.getBitMap());
         mainHolder.txtOrderNumber.setText(memeber.total + " عضو ");
         String left = "";
         if (Integer.parseInt(memeber.left) > 0) {

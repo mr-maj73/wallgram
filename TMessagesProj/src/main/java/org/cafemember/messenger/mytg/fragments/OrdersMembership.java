@@ -68,10 +68,10 @@ public class OrdersMembership extends Fragment {
                             member.total = object.getString("total");
                             member.name = object.getString("name");
                             member.done = object.getString("done");
-//                        member.date = object.getString("date");
+                        member.date = object.getString("date");
                             member.left = object.getString("left");
                             member.type = object.getString("type");
-                            //                      member.byteString = object.getString("byteString");
+                                                  member.byteString = object.getString("byteString");
                             members.add(member);
 
                         }
